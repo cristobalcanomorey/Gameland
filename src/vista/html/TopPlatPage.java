@@ -1,5 +1,5 @@
 package vista.html;
 
-public class TopPlatPage {
+public class TopPlatPage extends HtmlConstructor {
 
 }

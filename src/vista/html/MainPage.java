@@ -1,5 +1,5 @@
 package vista.html;
 
-public class MainPage {
+public class MainPage extends HtmlConstructor {
 
 }

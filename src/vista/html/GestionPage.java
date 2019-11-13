@@ -1,5 +1,5 @@
 package vista.html;
 
-public class GestionPage {
+public class GestionPage  extends HtmlConstructor {
 
 }

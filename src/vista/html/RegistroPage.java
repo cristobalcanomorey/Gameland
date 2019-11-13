@@ -1,5 +1,5 @@
 package vista.html;
 
-public class RegistroPage {
+public class RegistroPage extends HtmlConstructor {
 
 }

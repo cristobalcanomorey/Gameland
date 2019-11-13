@@ -1,5 +1,5 @@
 package vista.html;
 
-public class ResulBusquedaPage {
+public class ResulBusquedaPage extends HtmlConstructor {
 
 }

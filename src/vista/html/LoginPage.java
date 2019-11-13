@@ -1,5 +1,5 @@
 package vista.html;
 
-public class LoginPage {
+public class LoginPage extends HtmlConstructor {
 
 }

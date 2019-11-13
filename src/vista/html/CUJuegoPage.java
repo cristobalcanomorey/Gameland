@@ -1,5 +1,5 @@
 package vista.html;
 
-public class CUJuegoPage {
+public class CUJuegoPage  extends HtmlConstructor {
 
 }

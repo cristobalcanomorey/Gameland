@@ -1,5 +1,5 @@
 package vista.html;
 
-public class FichaPage {
+public class FichaPage  extends HtmlConstructor {
 
 }

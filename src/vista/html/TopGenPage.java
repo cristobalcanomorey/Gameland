@@ -1,5 +1,5 @@
 package vista.html;
 
-public class TopGenPage {
+public class TopGenPage extends HtmlConstructor {
 
 }
