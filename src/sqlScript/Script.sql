@@ -1,3 +1,4 @@
+-- drop database gameland;
 -- Crea la base de datos
 CREATE DATABASE gameland;
 use gameland;
@@ -12,7 +13,7 @@ CREATE TABLE IF NOT EXISTS usuario (
 	id INT(11) AUTO_INCREMENT PRIMARY KEY,   
 	nombre VARCHAR(100) NOT NULL,
 	usuario VARCHAR(100) NOT NULL,
-	password VARCHAR(100) NOT NULL,
+	passwd VARCHAR(100) NOT NULL,
 	foto VARCHAR(255),
 	administrador boolean NOT NULL
 )  ENGINE=INNODB;
@@ -30,7 +31,7 @@ CREATE TABLE IF NOT EXISTS genero (
 CREATE TABLE IF NOT EXISTS juego (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
 	titulo VARCHAR(255) NOT NULL,
-	year INT(11) NOT NULL,
+	anyo INT(11) NOT NULL,
 	foto VARCHAR(255) NOT NULL,
 	descripcion VARCHAR(255) NOT NULL,
 	idGenero INT(11) NOT NULL,
@@ -59,3 +60,15 @@ CREATE TABLE IF NOT EXISTS valoracion (
     	on delete cascade
     	on update restrict
 ) ENGINE=INNODB;
+
+
+-- Datos de ejemplo
+-- Usuarios:
+INSERT INTO usuario (nombre,usuario,passwd,foto,administrador)
+values ('Tomas', 'patata23','password','imgs/usuarios/patata23.png',false);
+
+INSERT INTO usuario (nombre,usuario,passwd,foto,administrador)
+values ('Tofol', 'mstrOfPuppies','1234','imgs/usuarios/mstrOfPuppies.png',true);
+
+INSERT INTO usuario (nombre,usuario,passwd,foto,administrador)
+values ('Namenos', 'namenos','1234','imgs/usuarios/namenos.png',false);
