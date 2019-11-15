@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import control.Control;
+import control.LogSingleton;
 import modelo.JDBCSingleton;
 import vista.html.RegistroPage;
 
@@ -31,15 +32,31 @@ public class Registro extends HttpServlet {
 //	<!-- Alerta que he substituït & per &amp; a la url -->
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException{
-		RegistroPage pagina = Control.crearPagRegistro();
+		LogSingleton log = LogSingleton.getInstance();
+		String errorDB = request.getParameter("errorDB");
+		String errorUsuario = request.getParameter("errorUsuario");
+		String usuarioExiste = request.getParameter("usuarioRepetido");
+		
+		RegistroPage pagina = null;
+		
+		if(errorDB != null) {
+			pagina = Control.crearPagRegistro("errorDB");
+		} else if(errorUsuario != null) {
+			pagina = Control.crearPagRegistro("errorUsuario");
+		} else if(usuarioExiste != null) {
+			pagina = Control.crearPagRegistro("usuarioExiste");
+		} else {
+			pagina = Control.crearPagRegistro();
+		}
 		try {
 			Control.printResponse(pagina, response);
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.getLoggerRegistro().error("Se ha producido un error: ",e);
 		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LogSingleton log = LogSingleton.getInstance();
 		String nombre = request.getParameter("nombre");
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
@@ -65,14 +82,15 @@ public class Registro extends HttpServlet {
 					} else {
 						response.sendRedirect("Registro?errorDB=si");
 					}
+				} else {
+					response.sendRedirect("Registro?usuarioRepetido=si");
 				}
 			} else {
 				response.sendRedirect("Registro?errorUsuario=si");
 			}
 			
 		} catch (ClassNotFoundException | SQLException | NamingException e) {
-			
-			e.printStackTrace();
+			log.getLoggerRegistro().error("Se ha producido un error: ", e);
 		}
 	}
 

@@ -31,7 +31,11 @@
    		</encoder>
    </appender>
    
-   <logger name="logs" level="ERROR" additivity="false">
+   <logger name="vista.Registro" level="ERROR" additivity="false">
+    <appender-ref ref="ERRORFILE" />
+  </logger>
+  
+  <logger name="vista.Login" level="ERROR" additivity="false">
     <appender-ref ref="ERRORFILE" />
   </logger>
   

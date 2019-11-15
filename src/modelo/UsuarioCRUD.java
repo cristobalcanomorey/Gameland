@@ -20,7 +20,7 @@ public class UsuarioCRUD {
 		Statement stmt = null;
 		JDBCSingleton.setStatement();
 		stmt = JDBCSingleton.getStatement();
-		stmt.executeUpdate("INSERT INTO usuario (nombre, usuario, passwd, foto, administrador) VALUES ('"+u.getNombre()+"','"+u.getUsuario()+"','"+u.getPassword()+"','"+u.getfPerfil()+"','"+false+"')");
+		stmt.executeUpdate("INSERT INTO usuario (nombre, usuario, passwd, foto, administrador) VALUES ('"+u.getNombre()+"','"+u.getUsuario()+"','"+u.getPassword()+"','"+u.getfPerfil()+"','"+0+"')");
 		
 	}
 

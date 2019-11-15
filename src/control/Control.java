@@ -19,6 +19,12 @@ public class Control {
 		RegistroPage reg = new RegistroPage();
 		return reg;
 	}
+	
+	public static RegistroPage crearPagRegistro(String excepcion) {
+		RegistroPage reg = new RegistroPage();
+		reg.setExcepcion(excepcion);
+		return reg;
+	}
 
 	public static void printResponse(RegistroPage pagina, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=UTF-8");
@@ -37,7 +43,7 @@ public class Control {
 		return nombres;
 	}
 
-	public static boolean guardarUsuarioEnBD(String nombre, String usuario, String password, String fPerfil) {
+	public static boolean guardarUsuarioEnBD(String nombre, String usuario, String password, String fPerfil) throws SQLException {
 		Usuario u = new Usuario(nombre,usuario,password,fPerfil);
 		try {
 			UsuarioCRUD.insert(u);

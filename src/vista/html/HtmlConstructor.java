@@ -8,6 +8,7 @@ public class HtmlConstructor {
 	private String contenidoHeader = "";
 	private String cierraHeader = "";
 	private String contenidoBody = "";
+	private String excepcion = "";
 	private String footer = "";
 	private String cierraBody = "";
 
@@ -43,11 +44,18 @@ public class HtmlConstructor {
 		resul += contenidoHeader;
 		resul += cierraHeader;
 		resul += contenidoBody;
+		resul += excepcion;
 		resul += footer;
 		resul += cierraBody;
 		return resul;
 	}
 	
+	
+	
+	public void setExcepcion(String excepcion) {
+		this.excepcion = excepcion;
+	}
+
 	public String getContenidoBody() {
 		return contenidoBody;
 	}
