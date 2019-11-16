@@ -1,5 +1,6 @@
 package vista;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import control.Control;
 import control.LogSingleton;
@@ -20,10 +22,10 @@ import vista.html.RegistroPage;
 @WebServlet("/Registro")
 public class Registro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private static final String UPLOAD_DIRECTORY = "Imagenes";
 //	Al context.xml del vostre tomcat heu d'afegir
 //	
-//	<Resource name="jdbc/aplicacion" auth="Container"
+//	<Resource name="jdbc/gameland" auth="Container"
 //	type="javax.sql.DataSource" maxActive="100" maxIdle="30"
 //	maxWait="10000" username="tofol" password="1234"
 //	driverClassName="com.mysql.cj.jdbc.Driver"
@@ -57,6 +59,7 @@ public class Registro extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LogSingleton log = LogSingleton.getInstance();
+		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
 		String nombre = request.getParameter("nombre");
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
@@ -74,6 +77,18 @@ public class Registro extends HttpServlet {
 					}
 				}
 				if(!encontrado) {
+					File uploadDir = new File(uploadPath);
+					if (!uploadDir.exists()) {
+						uploadDir.mkdir();
+					}
+					String fileName = null;
+					for (Part part : request.getParts()) {
+						fileName = Control.getFileName(part);
+						part.write(uploadPath + File.separator + fileName);
+					}
+					if (fileName.matches(".+\\.(jpg|png)")) {
+						fPerfil = fileName;
+					}
 					boolean errorDB = Control.guardarUsuarioEnBD(nombre,usuario,password,fPerfil);
 					HttpSession session = request.getSession(true);
 					session.setAttribute("usuario", usuario);

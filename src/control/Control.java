@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import modelo.JDBCSingleton;
 import modelo.UsuarioCRUD;
@@ -15,6 +16,14 @@ import vista.html.RegistroPage;
 
 public class Control {
 
+	public static String getFileName(Part part) {
+		for (String content : part.getHeader("content-disposition").split(";")) {
+			if (content.trim().startsWith("filename"))
+				return content.substring(content.indexOf("=") + 2, content.length() - 1);
+		}
+		return "desconocido.txt";
+	}
+	
 	public static RegistroPage crearPagRegistro() {
 		RegistroPage reg = new RegistroPage();
 		return reg;
@@ -33,7 +42,6 @@ public class Control {
 	}
 
 	public static void getConexion(String string, String string2) throws ClassNotFoundException, SQLException, NamingException {
-		
 		JDBCSingleton.setConnection(string, string2);
 	}
 
