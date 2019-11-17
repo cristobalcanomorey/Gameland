@@ -48,11 +48,12 @@ public class Login extends HttpServlet {
 		LogSingleton log = LogSingleton.getInstance();
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
+		
 		boolean esAdmin = false;
 		boolean loginCorrecto = false;
 		
 		// Comprobamos que nos han pasado bien los datos
-		if((usuario != null) && (password != null)) {
+		if((!usuario.equals("")) && (!password.equals(""))) {
 			JDBCSingleton.getInstance();
 			boolean existe = false;
 			try {

@@ -43,11 +43,11 @@ public class Registro extends HttpServlet {
 		
 		RegistroPage pagina = null;
 		
-		if(errorDB != null) {
+		if(!errorDB.equals("")) {
 			pagina = Control.crearPagRegistro("errorDB");
-		} else if(errorUsuario != null) {
+		} else if(!errorUsuario.equals("")) {
 			pagina = Control.crearPagRegistro("errorUsuario");
-		} else if(usuarioExiste != null) {
+		} else if(!usuarioExiste.equals("")) {
 			pagina = Control.crearPagRegistro("usuarioExiste");
 		} else {
 			pagina = Control.crearPagRegistro(null);
@@ -72,7 +72,7 @@ public class Registro extends HttpServlet {
 		try {
 			Control.getConexion("java:/comp/env","jdbc/gameland");
 			ResultSet usuarios = Control.getUsuariosDeBD();
-			if((nombre != null) && (usuario != null) && (password != null)) {
+			if((!nombre.equals("")) && (!usuario.equals("")) && (!password.equals(""))) {
 				while(usuarios.next()) {
 					if(usuarios.getString("usuario").equals(usuario)) {
 						encontrado = true;

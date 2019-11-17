@@ -28,7 +28,7 @@ public class Main extends HttpServlet {
 		String img = "Imagenes"+File.separator+"default.png";
 		boolean esAdmin = false;
 		MainPage pagina = null;
-		if(registrado != null) {
+		if(!registrado.equals("")) {
 			String usuario = Control.getLoggedUser(request);
 			try {
 				Control.getConexion("java:/comp/env","jdbc/gameland");
