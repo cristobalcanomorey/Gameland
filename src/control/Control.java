@@ -15,6 +15,7 @@ import modelo.JDBCSingleton;
 import modelo.UsuarioCRUD;
 import modelo.entidad.Usuario;
 import vista.html.HtmlConstructor;
+import vista.html.LoginPage;
 import vista.html.MainPage;
 import vista.html.RegistroPage;
 
@@ -47,14 +48,11 @@ public class Control {
 		return user;
 	}
 
-	public static RegistroPage crearPagRegistro() {
-		RegistroPage reg = new RegistroPage();
-		return reg;
-	}
-
 	public static RegistroPage crearPagRegistro(String excepcion) {
 		RegistroPage reg = new RegistroPage();
-		reg.setExcepcion(excepcion);
+		if(excepcion != null) {
+			reg.setExcepcion(excepcion);
+		}
 		return reg;
 	}
 
@@ -91,6 +89,14 @@ public class Control {
 	public static MainPage crearPagMain(String registrado, boolean esAdmin, String foto) {
 		MainPage pag = new MainPage(registrado,esAdmin,foto);
 		return pag;
+	}
+
+	public static LoginPage crearPagLogin(String error) {
+		LoginPage logpag = new LoginPage();
+		if(error!=null) {
+			logpag.setExcepcion(error);
+		}
+		return null;
 	}
 
 }

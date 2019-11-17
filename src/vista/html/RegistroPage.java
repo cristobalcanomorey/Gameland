@@ -27,32 +27,17 @@ public class RegistroPage extends HtmlConstructor {
 		return super.toString();
 	}
 
-	public String getAbreDiv() {
-		return abreDiv;
-	}
-
-	public String getCabecera() {
-		return cabecera;
-	}
-
-	public String getForm() {
-		return form;
-	}
-
-	public String getCierraDiv() {
-		return cierraDiv;
-	}
-
+	@Override
 	public void setExcepcion(String excepcion) {
 		switch (excepcion) {
 			case "errorDB":
-				super.setExcepcion("<p>Ha ocurrido un error en la base de datos</p>");
+				super.setExcepcion("<p class='excepcion'>Ha ocurrido un error en la base de datos</p>");
 				break;
 			case "errorUsuario":
-				super.setExcepcion("<p>No puedes dejar campos en blanco</p>");
+				super.setExcepcion("<p class='excepcion'>No puedes dejar campos en blanco</p>");
 				break;
 			case "usuarioExiste":
-				super.setExcepcion("<p>El nombre de usuario ya existe</p>");
+				super.setExcepcion("<p class='excepcion'>El nombre de usuario ya existe</p>");
 				break;
 		}
 	}

@@ -50,7 +50,7 @@ public class Registro extends HttpServlet {
 		} else if(usuarioExiste != null) {
 			pagina = Control.crearPagRegistro("usuarioExiste");
 		} else {
-			pagina = Control.crearPagRegistro();
+			pagina = Control.crearPagRegistro(null);
 		}
 		try {
 			Control.printResponse(pagina, response);

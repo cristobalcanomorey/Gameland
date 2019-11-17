@@ -50,14 +50,8 @@ public class HtmlConstructor {
 		return resul;
 	}
 	
-	
-	
 	public void setExcepcion(String excepcion) {
 		this.excepcion = excepcion;
-	}
-
-	public String getContenidoBody() {
-		return contenidoBody;
 	}
 
 	public void setContenidoBody(String contenidoBody) {
@@ -68,32 +62,8 @@ public class HtmlConstructor {
 		this.contenidoHeader = contenidoHeader;
 	}
 
-	public String getHead() {
-		return head;
-	}
-
-	public String getAbreBody() {
-		return abreBody;
-	}
-
-	public String getAbreHeader() {
-		return abreHeader;
-	}
-
 	public String getContenidoHeader() {
 		return contenidoHeader;
-	}
-
-	public String getCierraHeader() {
-		return cierraHeader;
-	}
-
-	public String getFooter() {
-		return footer;
-	}
-
-	public String getCierraBody() {
-		return cierraBody;
 	}
 
 	
