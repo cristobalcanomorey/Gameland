@@ -33,7 +33,7 @@ public class Registro extends HttpServlet {
 //
 //	<!-- Alerta que he substituït & per &amp; a la url -->
    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException{
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		LogSingleton log = LogSingleton.getInstance();
 		String errorDB = request.getParameter("errorDB");
 		String errorUsuario = request.getParameter("errorUsuario");
@@ -53,12 +53,13 @@ public class Registro extends HttpServlet {
 		try {
 			Control.printResponse(pagina, response);
 		} catch (IOException e) {
-			log.getLoggerRegistro().error("Se ha producido un error: ",e);
+			log.getLoggerRegistro().error("Se ha producido un error en get Registro: ", e);
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response){
 		LogSingleton log = LogSingleton.getInstance();
+		// Obtenemos una ruta en el servidor para guardar el archivo
 		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
 		String nombre = request.getParameter("nombre");
 		String usuario = request.getParameter("usuario");
@@ -77,15 +78,20 @@ public class Registro extends HttpServlet {
 					}
 				}
 				if(!encontrado) {
+					// Si la ruta no existe la crearemos
 					File uploadDir = new File(uploadPath);
 					if (!uploadDir.exists()) {
 						uploadDir.mkdir();
 					}
+					// Lo utilizaremos para guardar el nombre del archivo
 					String fileName = null;
+					//no entra en el bucle
+					// Obtenemos el archivo y lo guardamos a disco
 					for (Part part : request.getParts()) {
 						fileName = Control.getFileName(part);
 						part.write(uploadPath + File.separator + fileName);
 					}
+					// Si es una imagen guardamos la ruta en fPerfil
 					if (fileName.matches(".+\\.(jpg|png)")) {
 						fPerfil = fileName;
 					}
@@ -105,7 +111,9 @@ public class Registro extends HttpServlet {
 			}
 			
 		} catch (ClassNotFoundException | SQLException | NamingException e) {
-			log.getLoggerRegistro().error("Se ha producido un error: ", e);
+			log.getLoggerRegistro().error("Se ha producido un error en post Registro: ", e);
+		} catch (IllegalStateException |IOException |ServletException e) {
+			log.getLoggerRegistro().error("Se ha producido un error de imagen de perfil en post Registro: ", e);
 		}
 	}
 
