@@ -43,11 +43,11 @@ public class Registro extends HttpServlet {
 		
 		RegistroPage pagina = null;
 		
-		if(!errorDB.equals("")) {
+		if(errorDB != null) {
 			pagina = Control.crearPagRegistro("errorDB");
-		} else if(!errorUsuario.equals("")) {
+		} else if(errorUsuario != null) {
 			pagina = Control.crearPagRegistro("errorUsuario");
-		} else if(!usuarioExiste.equals("")) {
+		} else if(usuarioExiste != null) {
 			pagina = Control.crearPagRegistro("usuarioExiste");
 		} else {
 			pagina = Control.crearPagRegistro(null);
@@ -80,21 +80,27 @@ public class Registro extends HttpServlet {
 					}
 				}
 				if(!encontrado) {
-					// Si la ruta no existe la crearemos
-					File uploadDir = new File(uploadPath);
-					if (!uploadDir.exists()) {
-						uploadDir.mkdir();
-					}
-					// Lo utilizaremos para guardar el nombre del archivo
 					String fileName = null;
-					//no entra en el bucle
-					// Obtenemos el archivo y lo guardamos a disco
-					for (Part part : request.getParts()) {
-						fileName = Control.getFileName(part);
-						part.write(uploadPath + File.separator + fileName);
+					if(request.getParameter("avatar") != null) {
+						// Si la ruta no existe la crearemos
+						File uploadDir = new File(uploadPath);
+						if (!uploadDir.exists()) {
+							uploadDir.mkdir();
+						}
+						// Lo utilizaremos para guardar el nombre del archivo
+						
+						
+						// Obtenemos el archivo y lo guardamos a disco
+						for (Part part : request.getParts()) {
+							fileName = Control.getFileName(part);
+							part.write(uploadPath + File.separator + fileName);
+						}
+					} else {
+						fileName = "default.png";
 					}
+					
 					// Si es una imagen guardamos la ruta en fPerfil
-					if (fileName.matches(".+\\.(jpg|png)")) {
+					if (fileName.matches(".+\\.(jpg|png|jpeg)")) {
 						fPerfil = fileName;
 					}
 					boolean errorDB = Control.guardarUsuarioEnBD(nombre,usuario,password,fPerfil);
