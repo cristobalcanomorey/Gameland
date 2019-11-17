@@ -94,7 +94,7 @@ public class Registro extends HttpServlet {
 						part.write(uploadPath + File.separator + fileName);
 					}
 					// Si es una imagen guardamos la ruta en fPerfil
-					if (fileName.matches(".+\\.(jpg|png)")) {
+					if (fileName.matches(".+\\.(jpg|png|jpeg)")) {
 						fPerfil = fileName;
 					}
 					boolean errorDB = Control.guardarUsuarioEnBD(nombre,usuario,password,fPerfil);

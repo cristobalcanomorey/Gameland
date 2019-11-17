@@ -32,18 +32,19 @@ public class MainPage extends HtmlConstructor {
 				"			<button type='submit'>Buscar</button>\r\n" + 
 				"		</form>\r\n" + 
 				"	</div>";
-		if(nombre != null && foto != null) {
-			String nuevaCabecera = super.getContenidoHeader();
-			nuevaCabecera += "<div id='"+nombre+"'>\r\n" + 
-					"		<div>Prueba</div>\r\n" + 
-					"		<img src='"+foto+"' alt='perfil'>\r\n" + 
-					"	    </div>\r\n" + 
-					"	    <div id='opcionesUsuario'>\r\n" + 
-					"		<a href='Login'>Login</a>\r\n" + 
-					"		<a href='Registro'>Registro</a>\r\n" + 
-					"	    </div>";
-			super.setContenidoHeader(nuevaCabecera);
-			super.setContenidoBody(abreNavBar + contenidoNavBar + cierraNavBar + buscador);
+		if(nombre == null) {
+			nombre = "";
 		}
+		String nuevaCabecera = super.getContenidoHeader();
+		nuevaCabecera += "<div id='usuario'>\r\n" + 
+				"		<div>"+nombre+"</div>\r\n" + 
+				"		<img src='"+foto+"' alt='perfil'>\r\n" + 
+				"	    </div>\r\n" + 
+				"	    <div id='opcionesUsuario'>\r\n" + 
+				"		<a href='Login'>Login</a>\r\n" + 
+				"		<a href='Registro'>Registro</a>\r\n" + 
+				"	    </div>";
+		super.setContenidoHeader(nuevaCabecera);
+		super.setContenidoBody(abreNavBar + contenidoNavBar + cierraNavBar + buscador);
 	}
 }

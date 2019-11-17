@@ -25,7 +25,7 @@ public class Control {
 			if (content.trim().startsWith("filename"))
 				return content.substring(content.indexOf("=") + 2, content.length() - 1);
 		}
-		return "desconocido.txt";
+		return "default.jpeg";
 	}
 	
 	/**

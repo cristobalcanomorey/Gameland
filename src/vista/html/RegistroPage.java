@@ -11,7 +11,7 @@ public class RegistroPage extends HtmlConstructor {
 		super();
 		this.abreDiv = "<div id='registro'>";
 		this.cabecera = "<h1>Regístrate en Gameland</h1>";
-		this.form = "<form action='Registro' method='post'>\r\n"
+		this.form = "<form action='Registro' method='post' enctype='multipart/form-data'>\r\n"
 				+ "                <div>Nombre: <input type='text' name='nombre'> </div>\r\n"
 				+ "                <div>Usuario: <input type='text' name='usuario'> </div>\r\n"
 				+ "                <div>Contraseña: <input type='password' name='password'> </div>\r\n"
