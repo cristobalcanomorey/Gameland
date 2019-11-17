@@ -72,7 +72,7 @@ public class Registro extends HttpServlet {
 		try {
 			Control.getConexion("java:/comp/env","jdbc/gameland");
 			ResultSet usuarios = Control.getUsuariosDeBD();
-			if(nombre != null && usuario != null && password != null) {
+			if((nombre != null && nombre.equals("")) && (usuario != null && usuario.equals("")) && (password != null && password.equals(""))) {
 				while(usuarios.next()) {
 					if(usuarios.getString("usuario").equals(usuario)) {
 						encontrado = true;

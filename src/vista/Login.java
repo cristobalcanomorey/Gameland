@@ -1,7 +1,6 @@
 package vista;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -53,7 +52,7 @@ public class Login extends HttpServlet {
 		boolean loginCorrecto = false;
 		
 		// Comprobamos que nos han pasado bien los datos
-		if(usuario != null && password != null) {
+		if((usuario.equals("") && usuario != null) && (password != null && password.equals(""))) {
 			JDBCSingleton.getInstance();
 			boolean existe = false;
 			try {
@@ -71,11 +70,12 @@ public class Login extends HttpServlet {
 						break;
 					}
 				}
+				//Guarda el log si es usuario administrador
 				if(esAdmin) {
-					
-					log.getLoggerLogin().info("Se ha logueado un usuario administrador de nombre: " + usuario+"\n"
-							+"desde la ip:\t"+request.getRemoteAddr()
-							+"");
+					String fechaActual = Control.fechaActual();
+					log.getLoggerLogin().info("Se ha logueado un usuario administrador de nombre: " + usuario
+							+"\nDesde la ip:\t"+request.getRemoteAddr()
+							+"\nHora de inicio de sesión:\t"+fechaActual);
 				}
 				if(existe) {
 					if(loginCorrecto) {
@@ -83,8 +83,9 @@ public class Login extends HttpServlet {
 						session.setAttribute("usuario", usuario);
 						if(esAdmin) {
 							response.sendRedirect("Main?registrado=si&esAdmin=si");
+						}else {
+							response.sendRedirect("Main?registrado=si");
 						}
-						response.sendRedirect("Main?registrado=si");
 					} else {
 						response.sendRedirect("Login?errorUsuario=si");
 					}
@@ -100,6 +101,12 @@ public class Login extends HttpServlet {
 				}
 			}
 			
+		} else {
+			try {
+				response.sendRedirect("Login?errorUsuario=si");
+			} catch (IOException e) {
+				log.getLoggerLogin().error("Se ha producido un error en post Login: ",e);
+			}
 		}
 	}
 

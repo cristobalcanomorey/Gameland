@@ -34,10 +34,11 @@ public class LoginPage extends HtmlConstructor {
 			super.setExcepcion("<p class='excepcion'>Ha ocurrido un error interno... Vuelve a intentarlo más tarde</p>");
 			break;
 		case "errorUsuario":
-			super.setExcepcion("<p class='excepcion'>Contraseña incorrecta</p>");
+			super.setExcepcion("<p class='excepcion'>Los datos introducidos no son correctos o algunos faltan</p>");
 			break;
 		case "usuarioNoExiste":
 			super.setExcepcion("<p class='excepcion'>No hay ningún usuario registrado con ese nombre de usuario</p>");
+			break;
 		}
 	}
 	

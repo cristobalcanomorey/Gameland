@@ -1,5 +1,6 @@
 package vista;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +25,7 @@ public class Main extends HttpServlet {
 		LogSingleton log = LogSingleton.getInstance();
 		String registrado = request.getParameter("registrado");
 		String nombre = null;
-		String img = "Imagenes/default.jpeg";
+		String img = "Imagenes"+File.separator+"default.jpeg";
 		boolean esAdmin = false;
 		MainPage pagina = null;
 		if(registrado != null) {
@@ -35,7 +36,7 @@ public class Main extends HttpServlet {
 				while(usuarios.next()) {
 					if(usuarios.getString("usuario").equals(usuario)){
 						nombre = usuarios.getString("nombre");
-						img = "Imagenes/";
+						img = "Imagenes"+File.separator;
 						img += usuarios.getString("foto");
 						if(usuarios.getString("administrador").equals("1")) {
 							esAdmin = true;	

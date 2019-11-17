@@ -2,8 +2,10 @@ package control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
@@ -56,7 +58,7 @@ public class Control {
 		return reg;
 	}
 
-	public static void printResponse(HtmlConstructor pagina, HttpServletResponse response) throws IOException {
+	public static void printResponse(HtmlConstructor pagina, HttpServletResponse response) throws IOException, NullPointerException{
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		writer.print(pagina.toString());
@@ -96,7 +98,13 @@ public class Control {
 		if(error!=null) {
 			logpag.setExcepcion(error);
 		}
-		return null;
+		return logpag;
+	}
+	
+	public static String fechaActual() {
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+		Date date = new Date(System.currentTimeMillis());
+		return formatter.format(date);
 	}
 
 }
