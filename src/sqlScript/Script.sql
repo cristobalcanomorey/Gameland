@@ -1,4 +1,3 @@
--- drop database gameland;
 -- Crea la base de datos
 CREATE DATABASE gameland;
 use gameland;
@@ -61,14 +60,13 @@ CREATE TABLE IF NOT EXISTS valoracion (
     	on update restrict
 ) ENGINE=INNODB;
 
-
 -- Datos de ejemplo
 -- Usuarios:
 INSERT INTO usuario (nombre,usuario,passwd,foto,administrador)
-values ('Tomas', 'patata23','password','imgs/usuarios/patata23.png',false);
+values ('Tomas', 'patata23','password','patata23.png',false);
 
 INSERT INTO usuario (nombre,usuario,passwd,foto,administrador)
-values ('Tofol', 'mstrOfPuppies','1234','imgs/usuarios/mstrOfPuppies.png',true);
+values ('Tofol', 'mstrOfPuppies','1234','mstrOfPuppies.jpg',true);
 
 INSERT INTO usuario (nombre,usuario,passwd,foto,administrador)
-values ('Namenos', 'namenos','1234','imgs/usuarios/namenos.png',false);
+values ('Namenos', 'namenos','1234','namenos.png',false);
