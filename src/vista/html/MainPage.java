@@ -32,17 +32,21 @@ public class MainPage extends HtmlConstructor {
 				"			<button type='submit'>Buscar</button>\r\n" + 
 				"		</form>\r\n" + 
 				"	</div>";
+		String opcionesUsuario = "<div id='opcionesUsuario'>"
+				+ "<a href='Login'>Login</a>"
+				+ "<a href='Registro'>Registro</a>"
+				+ "</div>";
 		if(nombre == null) {
 			nombre = "";
+		} else {
+			opcionesUsuario = "<div id='opcionesUsuario'>"
+					+ "<a href='Logout'>Cerrar sesión</a>"
+					+ "</div>";
 		}
 		String nuevaCabecera = super.getContenidoHeader();
 		nuevaCabecera += "<div id='usuario'>\r\n" + 
 				"		<div>"+nombre+"</div>\r\n" + 
-				"		<img src='"+foto+"' alt='perfil'>\r\n" + 
-				"	    </div>\r\n" + 
-				"	    <div id='opcionesUsuario'>\r\n" + 
-				"		<a href='Login'>Login</a>\r\n" + 
-				"		<a href='Registro'>Registro</a>\r\n" + 
+				"		<img src='"+foto+"' alt='perfil'>\r\n" + opcionesUsuario+
 				"	    </div>";
 		super.setContenidoHeader(nuevaCabecera);
 		super.setContenidoBody(abreNavBar + contenidoNavBar + cierraNavBar + buscador);

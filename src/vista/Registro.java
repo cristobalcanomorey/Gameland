@@ -98,9 +98,9 @@ public class Registro extends HttpServlet {
 						fPerfil = fileName;
 					}
 					boolean errorDB = Control.guardarUsuarioEnBD(nombre,usuario,password,fPerfil);
-					HttpSession session = request.getSession(true);
-					session.setAttribute("usuario", usuario);
 					if(!errorDB) {
+						HttpSession session = request.getSession(true);
+						session.setAttribute("usuario", usuario);
 						response.sendRedirect("Main?registrado=si");
 					} else {
 						response.sendRedirect("Registro?errorDB=si");

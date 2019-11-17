@@ -23,7 +23,7 @@ public class Main extends HttpServlet {
 		JDBCSingleton.getInstance();
 		LogSingleton log = LogSingleton.getInstance();
 		String registrado = request.getParameter("registrado");
-		String nombre = "";
+		String nombre = null;
 		String img = "Imagenes/default.jpeg";
 		boolean esAdmin = false;
 		MainPage pagina = null;
@@ -40,18 +40,13 @@ public class Main extends HttpServlet {
 						if(usuarios.getString("administrador").equals("1")) {
 							esAdmin = true;	
 						}
+						break;
 					}
 				}
 			} catch (ClassNotFoundException | SQLException | NamingException e) {
 				log.getLoggerRegistro().error("Se ha producido un error en get Main: ", e);
 			}
-			
-			if(usuario!= null) {
-				pagina = Control.crearPagMain(nombre, esAdmin, img);
-			} else {
-				pagina = Control.crearPagMain(null,false,img);
-			}
-			
+			pagina = Control.crearPagMain(nombre, esAdmin, img);
 		} else {
 			pagina = Control.crearPagMain(null,false,img);
 		}

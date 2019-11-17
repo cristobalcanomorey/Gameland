@@ -9,6 +9,7 @@ import vista.EditJuego;
 import vista.Ficha;
 import vista.Gestion;
 import vista.Login;
+import vista.Logout;
 import vista.Main;
 import vista.Registro;
 import vista.ResulBusqueda;
@@ -28,6 +29,7 @@ public class LogSingleton {
 	private Logger loggerResulBusqueda = (Logger) LoggerFactory.getLogger(ResulBusqueda.class);
 	private Logger loggerTopGen = (Logger) LoggerFactory.getLogger(TopGen.class);
 	private Logger loggerTopPlat = (Logger) LoggerFactory.getLogger(TopPlat.class);
+	private Logger loggerLogout = (Logger) LoggerFactory.getLogger(Logout.class);
 
 	private LogSingleton() {
 	}
@@ -78,6 +80,10 @@ public class LogSingleton {
 
 	public Logger getLoggerTopPlat() {
 		return loggerTopPlat;
+	}
+
+	public Logger getLoggerLogout() {
+		return loggerLogout;
 	}
 
 	
