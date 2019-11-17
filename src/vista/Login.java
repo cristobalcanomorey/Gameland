@@ -52,7 +52,7 @@ public class Login extends HttpServlet {
 		boolean loginCorrecto = false;
 		
 		// Comprobamos que nos han pasado bien los datos
-		if((usuario.equals("") && usuario != null) && (password != null && password.equals(""))) {
+		if((usuario != null) && (password != null)) {
 			JDBCSingleton.getInstance();
 			boolean existe = false;
 			try {
