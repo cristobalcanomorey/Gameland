@@ -39,7 +39,7 @@
     <appender-ref ref="ERRORFILE" />
   </logger>
   
-  <logger name="adminLogs" level="INFO" additivity="false">
+  <logger name="vista.Login" level="INFO" additivity="false">
   	<appender-ref ref="ADMINFILE"/>
   </logger>
  
