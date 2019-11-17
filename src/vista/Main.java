@@ -25,7 +25,7 @@ public class Main extends HttpServlet {
 		LogSingleton log = LogSingleton.getInstance();
 		String registrado = request.getParameter("registrado");
 		String nombre = null;
-		String img = "Imagenes"+File.separator+"default.jpeg";
+		String img = "Imagenes"+File.separator+"default.png";
 		boolean esAdmin = false;
 		MainPage pagina = null;
 		if(registrado != null) {

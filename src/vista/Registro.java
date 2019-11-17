@@ -72,7 +72,7 @@ public class Registro extends HttpServlet {
 		try {
 			Control.getConexion("java:/comp/env","jdbc/gameland");
 			ResultSet usuarios = Control.getUsuariosDeBD();
-			if((nombre != null && nombre.equals("")) && (usuario != null && usuario.equals("")) && (password != null && password.equals(""))) {
+			if((nombre != null) && (usuario != null) && (password != null)) {
 				while(usuarios.next()) {
 					if(usuarios.getString("usuario").equals(usuario)) {
 						encontrado = true;
@@ -94,7 +94,7 @@ public class Registro extends HttpServlet {
 						part.write(uploadPath + File.separator + fileName);
 					}
 					// Si es una imagen guardamos la ruta en fPerfil
-					if (fileName.matches(".+\\.(jpg|png|jpeg)")) {
+					if (fileName.matches(".+\\.(jpg|png)")) {
 						fPerfil = fileName;
 					}
 					boolean errorDB = Control.guardarUsuarioEnBD(nombre,usuario,password,fPerfil);
