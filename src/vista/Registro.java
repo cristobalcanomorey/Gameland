@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import modelo.JDBCSingleton;
 import vista.html.RegistroPage;
 
 @WebServlet("/Registro")
+@MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class Registro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String UPLOAD_DIRECTORY = "Imagenes";
