@@ -82,11 +82,7 @@ public class Login extends HttpServlet {
 					if(loginCorrecto) {
 						HttpSession session = request.getSession(true);
 						session.setAttribute("usuario", usuario);
-						if(esAdmin) {
-							response.sendRedirect("Main?registrado=si&esAdmin=si");
-						}else {
-							response.sendRedirect("Main?registrado=si");
-						}
+						response.sendRedirect("Main");
 					} else {
 						response.sendRedirect("Login?errorUsuario=si");
 					}

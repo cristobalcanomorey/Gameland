@@ -23,13 +23,12 @@ public class Main extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response){
 		JDBCSingleton.getInstance();
 		LogSingleton log = LogSingleton.getInstance();
-		String registrado = request.getParameter("registrado");
 		String nombre = null;
 		String img = "Imagenes"+File.separator+"default.png";
 		boolean esAdmin = false;
 		MainPage pagina = null;
-		if(registrado != null) {
-			String usuario = Control.getLoggedUser(request);
+		String usuario = Control.getLoggedUser(request);
+		if(usuario != null) {
 			try {
 				Control.getConexion("java:/comp/env","jdbc/gameland");
 				ResultSet usuarios = Control.getUsuariosDeBD();

@@ -27,7 +27,16 @@ public class ResulBusqueda extends HttpServlet {
 				JDBCSingleton.getInstance();
 				Control.getConexion("java:/comp/env","jdbc/gameland");
 				ResultSet rs = Control.buscaJuegos(seBusca);
-				ResulBusquedaPage pag = Control.crearResulBusquedaPage(rs);
+				String usuario = Control.getLoggedUser(request);
+				ResultSet usuarios = Control.getUsuariosDeBD();
+				boolean esAdmin = false;
+				while(usuarios.next()) {
+					if(usuarios.getString("usuario").equals(usuario) && usuarios.getString("administrador").equals("1")){
+						esAdmin = true;
+						break;
+					}
+				}
+				ResulBusquedaPage pag = Control.crearResulBusquedaPage(rs,usuario,esAdmin);
 				Control.printResponse(pag,response);
 			} catch (SQLException | ClassNotFoundException | NamingException | NullPointerException | IOException e) {
 				log.getLoggerResulBusqueda().error("Se ha producido un error buscando juegos en get ResulBusqueda: ",e);
@@ -42,8 +51,5 @@ public class ResulBusqueda extends HttpServlet {
 		
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-		
-	}
 
 }

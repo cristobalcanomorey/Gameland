@@ -67,6 +67,7 @@ public class Registro extends HttpServlet {
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
 		String fPerfil = "";
+		
 		JDBCSingleton.getInstance();
 		boolean encontrado = false;
 		try {
@@ -107,7 +108,7 @@ public class Registro extends HttpServlet {
 					if(!errorDB) {
 						HttpSession session = request.getSession(true);
 						session.setAttribute("usuario", usuario);
-						response.sendRedirect("Main?registrado=si");
+						response.sendRedirect("Main");
 					} else {
 						response.sendRedirect("Registro?errorDB=si");
 					}
