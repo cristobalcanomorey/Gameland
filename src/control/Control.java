@@ -18,12 +18,14 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import modelo.JDBCSingleton;
+import modelo.JuegoCRUD;
 import modelo.UsuarioCRUD;
 import modelo.entidad.Usuario;
 import vista.html.HtmlConstructor;
 import vista.html.LoginPage;
 import vista.html.MainPage;
 import vista.html.RegistroPage;
+import vista.html.ResulBusquedaPage;
 
 public class Control {
 
@@ -79,8 +81,15 @@ public class Control {
 		return nombres;
 	}
 
-	public static boolean guardarUsuarioEnBD(String nombre, String usuario, String password, String fPerfil)
-			throws SQLException {
+	/***
+	 * Guarda los datos de un usuario en la base de datos
+	 * @param nombre Nombre del usuario
+	 * @param usuario Nombre de usuario del usuario
+	 * @param password Contraseña del usuario
+	 * @param fPerfil Nombre de la foto de perfíl
+	 * @return boolean true si hay error, false si no hay error.
+	 */
+	public static boolean guardarUsuarioEnBD(String nombre, String usuario, String password, String fPerfil){
 		Usuario u = new Usuario(nombre, usuario, password, fPerfil);
 		try {
 			UsuarioCRUD.insert(u);
@@ -126,6 +135,22 @@ public class Control {
 	    }
 	        
 	    return pages;
+	}
+
+	public static ResultSet buscaJuegos(String seBusca) throws SQLException {
+		ResultSet rs = null;
+		rs = JuegoCRUD.selectLikeTitulo(seBusca);
+		return rs;
+	}
+
+	public static ResulBusquedaPage crearResulBusquedaPage(ResultSet rs) throws SQLException {
+		ResulBusquedaPage pag = null;
+		ArrayList<Float> valPromedio = new ArrayList<Float>();
+		while(rs.next()) {
+			
+		}
+		pag = new ResulBusquedaPage(rs,valPromedio);
+		return pag;
 	}
 
 }

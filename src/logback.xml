@@ -39,6 +39,10 @@
     <appender-ref ref="ERRORFILE" />
   </logger>
   
+  <logger name="vista.ResulBusqueda" level="ERROR" additivity="false">
+    <appender-ref ref="ERRORFILE" />
+  </logger>
+  
   <logger name="vista.Login" level="INFO" additivity="false">
   	<appender-ref ref="ADMINFILE"/>
   </logger>
