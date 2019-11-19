@@ -28,7 +28,8 @@ public class ResulBusqueda extends HttpServlet {
 				Control.getConexion("java:/comp/env","jdbc/gameland");
 				ResultSet rs = Control.buscaJuegos(seBusca);
 				ResulBusquedaPage pag = Control.crearResulBusquedaPage(rs);
-			} catch (SQLException | ClassNotFoundException | NamingException e) {
+				Control.printResponse(pag,response);
+			} catch (SQLException | ClassNotFoundException | NamingException | NullPointerException | IOException e) {
 				log.getLoggerResulBusqueda().error("Se ha producido un error buscando juegos en get ResulBusqueda: ",e);
 			}
 		} else {

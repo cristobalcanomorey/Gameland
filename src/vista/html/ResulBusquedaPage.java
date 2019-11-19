@@ -1,6 +1,7 @@
 package vista.html;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ResulBusquedaPage extends HtmlConstructor {
@@ -15,7 +16,8 @@ public class ResulBusquedaPage extends HtmlConstructor {
 	private String cierraTabla = "";
 	private String cierraResul = "";
 	
-	public ResulBusquedaPage(ResultSet rs, ArrayList<Float> valoraciones) {
+	public ResulBusquedaPage(ResultSet rs, ArrayList<Float> valoraciones) throws SQLException {
+		super();
 		this.abreResul = "<div id='resBusqeda'>";
 		this.greet = "<h1>Resultados de búsqueda</h1>";
 		this.abreTabla = "<table>";
@@ -29,7 +31,20 @@ public class ResulBusquedaPage extends HtmlConstructor {
 				"                    </tr>\r\n" + 
 				"                </thead>";
 		this.abreTbody = "<tbody>";
-		
+		while(rs.next()) {
+			int posicion = rs.getRow();
+			this.contenidoTbody += "<tr>";
+			this.contenidoTbody += "<td>"+rs.getString("juego.titulo")+"</td>";
+			this.contenidoTbody += "<td>"+valoraciones.get(posicion-1)+"</td>";
+			this.contenidoTbody += "<td>"+rs.getString("genero.nombre")+"</td>";
+			this.contenidoTbody += "<td>"+rs.getString("juego.anyo")+"</td>";
+			this.contenidoTbody += "<td>"+rs.getString("plataforma.nombre")+"</td>";
+			this.contenidoTbody += "</tr>";
+		}
+		this.cierraTbody = "</tbody>";
+		this.cierraTabla = "</table>";
+		this.cierraResul = "</div>";
+		super.setContenidoBody(abreResul+greet+abreTabla+tHead+abreTbody+contenidoTbody+cierraTbody+cierraTabla+cierraResul);
 	}
 	
 	

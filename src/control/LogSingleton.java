@@ -30,6 +30,7 @@ public class LogSingleton {
 	private Logger loggerTopGen = (Logger) LoggerFactory.getLogger(TopGen.class);
 	private Logger loggerTopPlat = (Logger) LoggerFactory.getLogger(TopPlat.class);
 	private Logger loggerLogout = (Logger) LoggerFactory.getLogger(Logout.class);
+	private Logger loggerControl = (Logger) LoggerFactory.getLogger(Control.class);
 
 	private LogSingleton() {
 	}
@@ -84,6 +85,10 @@ public class LogSingleton {
 
 	public Logger getLoggerLogout() {
 		return loggerLogout;
+	}
+
+	public Logger getLoggerControl() {
+		return loggerControl;
 	}
 
 	

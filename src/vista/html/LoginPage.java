@@ -23,10 +23,6 @@ public class LoginPage extends HtmlConstructor {
 		super.setContenidoBody(abreDiv+greet+formulario+cierraDiv);
 	}
 	
-	public String toString() {
-		return super.toString();
-	}
-	
 	@Override
 	public void setExcepcion(String excepcion) {
 		switch (excepcion) {

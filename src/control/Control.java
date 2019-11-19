@@ -20,6 +20,7 @@ import javax.servlet.http.Part;
 import modelo.JDBCSingleton;
 import modelo.JuegoCRUD;
 import modelo.UsuarioCRUD;
+import modelo.ValoracionCRUD;
 import modelo.entidad.Usuario;
 import vista.html.HtmlConstructor;
 import vista.html.LoginPage;
@@ -91,12 +92,12 @@ public class Control {
 	 */
 	public static boolean guardarUsuarioEnBD(String nombre, String usuario, String password, String fPerfil){
 		Usuario u = new Usuario(nombre, usuario, password, fPerfil);
+		LogSingleton log = LogSingleton.getInstance();
 		try {
 			UsuarioCRUD.insert(u);
 			return false;
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			log.getLoggerControl().error("Se ha producido un error en guardarUsuarioEnBD de Control: ",e);
 			return true;
 		}
 	}
@@ -142,13 +143,36 @@ public class Control {
 		rs = JuegoCRUD.selectLikeTitulo(seBusca);
 		return rs;
 	}
+	
+	public static ResultSet buscaValoracionesDeJuego(String idJuego) throws SQLException {
+		ResultSet rs = null;
+		rs = ValoracionCRUD.selectPorIdJuego(idJuego);
+		return rs;
+	}
+	
+	public static float promedio(ResultSet valoraciones) throws SQLException {
+		float resul = 0;
+		int numVals = 0;
+		if(valoraciones.last()) {
+			numVals = valoraciones.getRow();
+			valoraciones.beforeFirst();
+		}
+		while(valoraciones.next()) {
+			resul += Float.parseFloat(valoraciones.getString("valoracion"));
+		}
+		resul = resul/numVals;
+		return resul;
+	}
 
 	public static ResulBusquedaPage crearResulBusquedaPage(ResultSet rs) throws SQLException {
 		ResulBusquedaPage pag = null;
 		ArrayList<Float> valPromedio = new ArrayList<Float>();
 		while(rs.next()) {
-			
+			String idJuego = rs.getString("juego.id");
+			ResultSet vals = buscaValoracionesDeJuego(idJuego);
+			valPromedio.add(promedio(vals));
 		}
+		rs.beforeFirst();
 		pag = new ResulBusquedaPage(rs,valPromedio);
 		return pag;
 	}

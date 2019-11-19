@@ -23,10 +23,6 @@ public class RegistroPage extends HtmlConstructor {
 		super.setContenidoBody(abreDiv + cabecera + form + cierraDiv);
 	}
 
-	public String toString() {
-		return super.toString();
-	}
-
 	@Override
 	public void setExcepcion(String excepcion) {
 		switch (excepcion) {
