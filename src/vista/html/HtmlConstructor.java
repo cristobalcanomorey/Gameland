@@ -5,6 +5,7 @@ public class HtmlConstructor {
 	private String head = "";
 	private String abreBody = "";
 	private String abreHeader = "";
+	private String enlaceAMain = "";
 	private String contenidoHeader = "";
 	private String cierraHeader = "";
 	private String contenidoBody = "";
@@ -26,7 +27,8 @@ public class HtmlConstructor {
 				"    </head>";
 		this.abreBody = "<body>";
 		this.abreHeader = "<div id='header'>";
-		this.contenidoHeader = "<a href='Main'>\r\n" + 
+		
+		this.contenidoHeader = "<a href='Main'>" + 
 				"                <img src='imgs/logo.png' alt='Gameland'>\r\n" + 
 				"            </a>";
 		this.cierraHeader = "</div>";
@@ -66,5 +68,10 @@ public class HtmlConstructor {
 		return contenidoHeader;
 	}
 
+	public void setEnlaceAMain(String enlaceAMain) {
+		this.enlaceAMain = enlaceAMain;
+	}
+
+	
 	
 }

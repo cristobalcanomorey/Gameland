@@ -36,6 +36,7 @@ public class MainPage extends HtmlConstructor {
 				+ "<a href='Login'>Login</a>"
 				+ "<a href='Registro'>Registro</a>"
 				+ "</div>";
+		String enlAMain = "<a href='Main?registrado=si'>"; 
 		if(nombre == null) {
 			nombre = "";
 		} else {
