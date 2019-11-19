@@ -27,7 +27,6 @@ public class HtmlConstructor {
 				"    </head>";
 		this.abreBody = "<body>";
 		this.abreHeader = "<div id='header'>";
-		
 		this.contenidoHeader = "<a href='Main'>" + 
 				"                <img src='imgs/logo.png' alt='Gameland'>\r\n" + 
 				"            </a>";

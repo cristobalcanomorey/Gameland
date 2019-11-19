@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 public class ResulBusquedaPage extends HtmlConstructor {
 
+	private String abreNavBar = "";
+	private String contenidoNavBar = "";
+	private String cierraNavBar = "";
 	private String abreResul = "";
 	private String greet = "";
 	private String abreTabla = "";
@@ -16,8 +19,18 @@ public class ResulBusquedaPage extends HtmlConstructor {
 	private String cierraTabla = "";
 	private String cierraResul = "";
 	
-	public ResulBusquedaPage(ResultSet rs, ArrayList<Float> valoraciones) throws SQLException {
+	public ResulBusquedaPage(ResultSet rs, ArrayList<Float> valoraciones,String nombre, boolean esAdmin) throws SQLException {
 		super();
+		this.abreNavBar = "<div id='navBar'><ul>";
+		this.contenidoNavBar = "<li>BUSCAR</li>\r\n" + 
+				"			<li>Los MEJORES juegos:</li>\r\n" + 
+				"			<li><a href='TopGen'>Por género</a></li>\r\n" + 
+				"			<li><a href='TopPlat'>Por plataforma</a></li>\r\n";
+		if(esAdmin) {
+			this.contenidoNavBar += "<li id='admin'><a href='Gestion'>Gestionar juegos</a></li>";
+		} 
+		
+		this.cierraNavBar = "</ul></div>";
 		this.abreResul = "<div id='resBusqeda'>";
 		this.greet = "<h1>Resultados de búsqueda</h1>";
 		this.abreTabla = "<table>";
@@ -44,7 +57,7 @@ public class ResulBusquedaPage extends HtmlConstructor {
 		this.cierraTbody = "</tbody>";
 		this.cierraTabla = "</table>";
 		this.cierraResul = "</div>";
-		super.setContenidoBody(abreResul+greet+abreTabla+tHead+abreTbody+contenidoTbody+cierraTbody+cierraTabla+cierraResul);
+		super.setContenidoBody(abreNavBar+contenidoNavBar+cierraNavBar+abreResul+greet+abreTabla+tHead+abreTbody+contenidoTbody+cierraTbody+cierraTabla+cierraResul);
 	}
 	
 	
