@@ -81,9 +81,6 @@ public class Registro extends HttpServlet {
 					}
 				}
 				if (!encontrado) {
-					String fileName = null;
-
-					// formulario no da el parametro
 
 					// Si la ruta no existe la crearemos
 					File uploadDir = new File(uploadPath);
@@ -91,7 +88,8 @@ public class Registro extends HttpServlet {
 						uploadDir.mkdir();
 					}
 					// Lo utilizaremos para guardar el nombre del archivo
-
+					String fileName = null;
+					
 					// Obtenemos el archivo y lo guardamos a disco
 					for (Part part : request.getParts()) {
 						fileName = Control.getFileNameDeUsuario(part, usuario);
