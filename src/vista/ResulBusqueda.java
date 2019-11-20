@@ -56,16 +56,18 @@ public class ResulBusqueda extends HttpServlet {
 				}
 				ResulBusquedaPage pag = Control.crearResulBusquedaPage(rs, nombreUser, esAdmin, img, seBusca);
 				Control.printResponse(pag, response);
-				if(!seBusca.equals("")) {
+				if (!seBusca.equals("")) {
 					String fecha = Control.fechaActual();
-					if(nombreUser.equals("")) {
-						System.out.println("sinnom");
-						log.getLoggerResulBusqueda().debug("Registro de búsqueda ["+fecha+"]:\n\tIP: "+request.getRemoteAddr()+"\n\tTérmino de búsqueda: (\""+seBusca+"\")");
-					}else {
-						System.out.println("connom");
-						log.getLoggerResulBusqueda().debug("Registro de búsqueda ["+fecha+"]:\n\tNombre de usuario: "+nombreUser+"\n\tIP: "+request.getRemoteAddr()+"\n\tTérmino de búsqueda: (\""+seBusca+"\")");
+					if (nombreUser.equals("")) {
+						log.getLoggerResulBusqueda().debug("Registro de búsqueda [" + fecha + "]:\n\tIP: "
+								+ request.getRemoteAddr() + "\n\tTérmino de búsqueda: (\"" + seBusca + "\")");
+					} else {
+						log.getLoggerResulBusqueda()
+								.debug("Registro de búsqueda [" + fecha + "]:\n\tNombre de usuario: " + nombreUser
+										+ "\n\tIP: " + request.getRemoteAddr() + "\n\tTérmino de búsqueda: (\""
+										+ seBusca + "\")");
 					}
-					
+
 				}
 			} catch (SQLException | ClassNotFoundException | NamingException | NullPointerException | IOException e) {
 				log.getLoggerResulBusqueda().error("Se ha producido un error buscando juegos en get ResulBusqueda: ",
