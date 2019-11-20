@@ -17,7 +17,6 @@ public class MainPage extends HtmlConstructor {
 		DisplayDeUsuario dis = new DisplayDeUsuario(nombre,esAdmin,foto,super.getContenidoHeader());
 		this.abreNavBar = dis.getAbreNavBar();
 		this.contenidoNavBar = dis.getContenidoNavBar();
-		this.contenidoNavBar += dis.getContenidoNavBar();
 		this.cierraNavBar = dis.getCierraNavBar();
 		
 		this.buscador = "<div id='buscador'>\r\n" + 

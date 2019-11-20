@@ -5,7 +5,6 @@ public class HtmlConstructor {
 	private String head = "";
 	private String abreBody = "";
 	private String abreHeader = "";
-	private String enlaceAMain = "";
 	private String contenidoHeader = "";
 	private String cierraHeader = "";
 	private String contenidoBody = "";
@@ -66,11 +65,6 @@ public class HtmlConstructor {
 	public String getContenidoHeader() {
 		return contenidoHeader;
 	}
-
-	public void setEnlaceAMain(String enlaceAMain) {
-		this.enlaceAMain = enlaceAMain;
-	}
-
 	
 	
 }

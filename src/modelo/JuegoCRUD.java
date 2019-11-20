@@ -18,4 +18,15 @@ public class JuegoCRUD {
 		ResultSet rs = stmt.executeQuery(query);
 		return rs;
 	}
+	
+	public static ResultSet selectPorID(String idJuego) throws SQLException {
+		Statement stmt = null;
+		JDBCSingleton.setStatement();
+		stmt = JDBCSingleton.getStatement();
+		String query = "SELECT * "
+				+ "FROM juego "
+				+ "WHERE id="+idJuego;
+		ResultSet rs = stmt.executeQuery(query);
+		return rs;
+	}
 }

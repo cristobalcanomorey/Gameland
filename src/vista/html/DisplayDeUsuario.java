@@ -7,7 +7,6 @@ public class DisplayDeUsuario {
 	private String nuevoContenidoHeader = "";
 	
 	public DisplayDeUsuario(String nombre, boolean esAdmin,String foto, String viejaCabecera) {
-		this.nuevoContenidoHeader = viejaCabecera;
 		this.abreNavBar = "<div id='navBar'><ul>";
 		this.contenidoNavBar = "<li>BUSCAR</li>\r\n" + 
 				"			<li>Los MEJORES juegos:</li>\r\n" + 
@@ -27,9 +26,6 @@ public class DisplayDeUsuario {
 		if(nombre == null) {
 			nombre = "";
 		} else {
-			String enlAMain = "<a href='Main?registrado=si'>"; 
-			String chConEnlaceAMainCorrecto = enlAMain+"<img src='imgs/logo.png' alt='Gameland'></a>";
-			this.nuevoContenidoHeader = chConEnlaceAMainCorrecto;
 			opcionesUsuario = "<div id='opcionesUsuario'>"
 					+ "<a href='Logout'>Cerrar sesión</a>"
 					+ "</div>";

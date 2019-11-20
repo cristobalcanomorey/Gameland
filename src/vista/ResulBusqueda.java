@@ -1,5 +1,6 @@
 package vista;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +23,8 @@ public class ResulBusqueda extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		LogSingleton log = LogSingleton.getInstance();
 		String seBusca = request.getParameter("busqueda");
+		String img = "Imagenes"+File.separator+"default.png";
+		String nombreUser = "";
 		if(seBusca != null) {
 			try {
 				JDBCSingleton.getInstance();
@@ -29,14 +32,20 @@ public class ResulBusqueda extends HttpServlet {
 				ResultSet rs = Control.buscaJuegos(seBusca);
 				String usuario = Control.getLoggedUser(request);
 				ResultSet usuarios = Control.getUsuariosDeBD();
+				
 				boolean esAdmin = false;
 				while(usuarios.next()) {
-					if(usuarios.getString("usuario").equals(usuario) && usuarios.getString("administrador").equals("1")){
-						esAdmin = true;
+					if(usuarios.getString("usuario").equals(usuario)){
+						if(usuarios.getString("administrador").equals("1")) {
+							img = "Imagenes"+File.separator;
+							img += usuarios.getString("foto");
+							esAdmin = true;
+						}
+						nombreUser = usuarios.getString("nombre");
 						break;
 					}
 				}
-				ResulBusquedaPage pag = Control.crearResulBusquedaPage(rs,usuario,esAdmin);
+				ResulBusquedaPage pag = Control.crearResulBusquedaPage(rs,nombreUser,esAdmin,img);
 				Control.printResponse(pag,response);
 			} catch (SQLException | ClassNotFoundException | NamingException | NullPointerException | IOException e) {
 				log.getLoggerResulBusqueda().error("Se ha producido un error buscando juegos en get ResulBusqueda: ",e);

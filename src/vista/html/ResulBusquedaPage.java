@@ -19,18 +19,13 @@ public class ResulBusquedaPage extends HtmlConstructor {
 	private String cierraTabla = "";
 	private String cierraResul = "";
 	
-	public ResulBusquedaPage(ResultSet rs, ArrayList<Float> valoraciones,String nombre, boolean esAdmin) throws SQLException {
+	public ResulBusquedaPage(ResultSet rs, ArrayList<Float> valoraciones,String nombre, boolean esAdmin,String foto) throws SQLException {
 		super();
-		this.abreNavBar = "<div id='navBar'><ul>";
-		this.contenidoNavBar = "<li>BUSCAR</li>\r\n" + 
-				"			<li>Los MEJORES juegos:</li>\r\n" + 
-				"			<li><a href='TopGen'>Por género</a></li>\r\n" + 
-				"			<li><a href='TopPlat'>Por plataforma</a></li>\r\n";
-		if(esAdmin) {
-			this.contenidoNavBar += "<li id='admin'><a href='Gestion'>Gestionar juegos</a></li>";
-		} 
+		DisplayDeUsuario dis = new DisplayDeUsuario(nombre,esAdmin,foto,super.getContenidoHeader());
+		this.abreNavBar = dis.getAbreNavBar();
+		this.contenidoNavBar = dis.getContenidoNavBar();
+		this.cierraNavBar = dis.getCierraNavBar();
 		
-		this.cierraNavBar = "</ul></div>";
 		this.abreResul = "<div id='resBusqeda'>";
 		this.greet = "<h1>Resultados de búsqueda</h1>";
 		this.abreTabla = "<table>";
@@ -47,7 +42,7 @@ public class ResulBusquedaPage extends HtmlConstructor {
 		while(rs.next()) {
 			int posicion = rs.getRow();
 			this.contenidoTbody += "<tr>";
-			this.contenidoTbody += "<td>"+rs.getString("juego.titulo")+"</td>";
+			this.contenidoTbody += "<td><a href='Ficha?idJuego="+rs.getString("juego.id")+"'>"+rs.getString("juego.titulo")+"</a></td>";
 			this.contenidoTbody += "<td>"+valoraciones.get(posicion-1)+"</td>";
 			this.contenidoTbody += "<td>"+rs.getString("genero.nombre")+"</td>";
 			this.contenidoTbody += "<td>"+rs.getString("juego.anyo")+"</td>";
@@ -57,6 +52,7 @@ public class ResulBusquedaPage extends HtmlConstructor {
 		this.cierraTbody = "</tbody>";
 		this.cierraTabla = "</table>";
 		this.cierraResul = "</div>";
+		super.setContenidoHeader(dis.getNuevoContenidoHeader());
 		super.setContenidoBody(abreNavBar+contenidoNavBar+cierraNavBar+abreResul+greet+abreTabla+tHead+abreTbody+contenidoTbody+cierraTbody+cierraTabla+cierraResul);
 	}
 	

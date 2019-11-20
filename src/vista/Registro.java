@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Enumeration;
 
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -82,6 +83,10 @@ public class Registro extends HttpServlet {
 				}
 				if(!encontrado) {
 					String fileName = null;
+					Enumeration paramaterNames = request.getParameterNames();
+					while(paramaterNames.hasMoreElements() ) {
+					       System.out.println(paramaterNames.nextElement());
+					} 
 					if(request.getParameter("avatar") != null) {
 						// Si la ruta no existe la crearemos
 						File uploadDir = new File(uploadPath);
@@ -93,7 +98,7 @@ public class Registro extends HttpServlet {
 						
 						// Obtenemos el archivo y lo guardamos a disco
 						for (Part part : request.getParts()) {
-							fileName = Control.getFileName(part);
+							fileName = Control.getFileNameDeUsuario(part,usuario);
 							part.write(uploadPath + File.separator + fileName);
 						}
 					} else {

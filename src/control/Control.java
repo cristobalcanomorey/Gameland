@@ -19,6 +19,7 @@ import modelo.JuegoCRUD;
 import modelo.UsuarioCRUD;
 import modelo.ValoracionCRUD;
 import modelo.entidad.Usuario;
+import vista.html.FichaPage;
 import vista.html.HtmlConstructor;
 import vista.html.LoginPage;
 import vista.html.MainPage;
@@ -27,14 +28,17 @@ import vista.html.ResulBusquedaPage;
 
 public class Control {
 
-	public static String getFileName(Part part) {
+	public static String getFileNameDeUsuario(Part part, String usuario) {
+		String resul = "default.jpeg";
 		for (String content : part.getHeader("content-disposition").split(";")) {
 			if (content.trim().startsWith("filename"))
-				return content.substring(content.indexOf("=") + 2, content.length() - 1);
+				resul= content.substring(content.indexOf("=") + 2, content.length() - 1);
 		}
-		return "default.jpeg";
+		String nombreOriginal = resul.substring(0,resul.indexOf("."));
+		resul.replace(nombreOriginal, usuario);
+		return resul;
 	}
-	
+		
 	/**
 	 * Método que devuelve el nombre de usuario si está logeado
 	 * 
@@ -144,7 +148,7 @@ public class Control {
 		return resul;
 	}
 
-	public static ResulBusquedaPage crearResulBusquedaPage(ResultSet rs,String nombre, boolean esAdmin) throws SQLException {
+	public static ResulBusquedaPage crearResulBusquedaPage(ResultSet rs,String nombre, boolean esAdmin,String foto) throws SQLException {
 		ResulBusquedaPage pag = null;
 		ArrayList<Float> valPromedio = new ArrayList<Float>();
 		while(rs.next()) {
@@ -153,7 +157,23 @@ public class Control {
 			valPromedio.add(promedio(vals));
 		}
 		rs.beforeFirst();
-		pag = new ResulBusquedaPage(rs,valPromedio,nombre,esAdmin);
+		pag = new ResulBusquedaPage(rs,valPromedio,nombre,esAdmin,foto);
+		return pag;
+	}
+
+	public static ResultSet getJuegoPorID(String idJuego) throws SQLException {
+		ResultSet rs = null;
+		rs = JuegoCRUD.selectPorID(idJuego);
+		return rs;
+	}
+
+	public static FichaPage crearFichaPage(ResultSet juego, String nombreUser, boolean esAdmin, String foto) throws SQLException {
+		FichaPage pag = null;
+		juego.next();
+		ResultSet vals = buscaValoracionesDeJuego(juego.getString("id"));
+		float valPromedio = promedio(vals);
+		juego.beforeFirst();
+		pag = new FichaPage(juego,valPromedio,nombreUser,esAdmin,foto);
 		return pag;
 	}
 
