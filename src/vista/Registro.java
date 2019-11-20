@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Enumeration;
 
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -83,10 +82,7 @@ public class Registro extends HttpServlet {
 				}
 				if (!encontrado) {
 					String fileName = null;
-//					Enumeration paramaterNames = request.getParameterNames();
-//					while(paramaterNames.hasMoreElements() ) {
-//					       System.out.println(paramaterNames.nextElement());
-//					} 
+
 					// formulario no da el parametro
 
 					// Si la ruta no existe la crearemos
