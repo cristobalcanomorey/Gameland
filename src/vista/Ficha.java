@@ -16,11 +16,18 @@ import control.LogSingleton;
 import modelo.JDBCSingleton;
 import vista.html.FichaPage;
 
-
+/**
+ * Servlet para mostrar fichas
+ * @author tofol
+ *
+ */
 @WebServlet("/Ficha")
 public class Ficha extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	/**
+	 * Método doGet del servlet Ficha
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response){
 		LogSingleton log = LogSingleton.getInstance();
 		String idJuego = request.getParameter("idJuego");
@@ -59,7 +66,39 @@ public class Ficha extends HttpServlet {
 		}
 	}
 	
+	/**
+	 * Introduce la nueva valoración de un juego
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response){
+		LogSingleton log = LogSingleton.getInstance();
+		String valoracion = request.getParameter("valoracion");
+		String idJuego = request.getParameter("idJuego");
+		String idUsuario = "";
+		JDBCSingleton.getInstance();
+		try {
+			Control.getConexion("java:/comp/env","jdbc/gameland");
+			String usuario = Control.getLoggedUser(request);
+			ResultSet usuarios = Control.getUsuariosDeBD();
+			while(usuarios.next()) {
+				if(usuarios.getString("usuario").equals(usuario)){
+					idUsuario = usuarios.getString("id");
+					break;
+				}
+			}
+			ResultSet valoraciones = Control.getValoracionesDeJuegoPorUsuario(idJuego,idUsuario);
+			if(!valoraciones.next()) {
+				boolean errorDB = Control.guardarValoracionEnBD(valoracion,idJuego,idUsuario);
+				if(!errorDB) {
+					response.sendRedirect("Ficha?yaVal=si&idJuego="+idJuego);
+				} else {
+					response.sendRedirect("Ficha?errorDB=si&idJuego="+idJuego);
+				}
+			} else {
+				response.sendRedirect("Ficha?yaVal=si&idJuego="+idJuego);
+			}
+		} catch (ClassNotFoundException | SQLException | NamingException | IOException e) {
+			log.getLoggerFicha().error("Se ha producido un error en post Ficha: ",e);
+		}
 		
 	}
 

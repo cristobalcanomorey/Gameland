@@ -1,11 +1,23 @@
 package vista.html;
 
+/**
+ * Clase que centraliza el display del usuario en las páginas
+ * @author tofol
+ *
+ */
 public class DisplayDeUsuario {
 	private String abreNavBar = "";
 	private String contenidoNavBar = "";
 	private String cierraNavBar = "";
 	private String nuevoContenidoHeader = "";
 	
+	/**
+	 * Constructor para mostrar o no el usuario, la barra de navegación y la opción de editar juegos
+	 * @param nombre Nombre del usuario
+	 * @param esAdmin True si es administrador
+	 * @param foto Ruta a su foto de perfil
+	 * @param viejaCabecera La cabecera por defecto
+	 */
 	public DisplayDeUsuario(String nombre, boolean esAdmin,String foto, String viejaCabecera) {
 		this.abreNavBar = "<div id='navBar'><ul>";
 		this.contenidoNavBar = "<li>BUSCAR</li>\r\n" + 
@@ -26,9 +38,7 @@ public class DisplayDeUsuario {
 		if(nombre == null) {
 			nombre = "";
 		}
-		if(nombre.equals("")) {
-			
-		}else {
+		if(!nombre.equals("")) {
 			opcionesUsuario = "<div id='opcionesUsuario'>"
 					+ "<a href='Logout'>Cerrar sesión</a>"
 					+ "</div>";
@@ -41,18 +51,30 @@ public class DisplayDeUsuario {
 		this.nuevoContenidoHeader = nuevaCabecera;
 	}
 
+	/**
+	 * Obtener abreNavBar
+	 */
 	public String getAbreNavBar() {
 		return abreNavBar;
 	}
 
+	/**
+	 * Obtener contenidoNavBar
+	 */
 	public String getContenidoNavBar() {
 		return contenidoNavBar;
 	}
 
+	/**
+	 * Obtener getCierraNavBar
+	 */
 	public String getCierraNavBar() {
 		return cierraNavBar;
 	}
 
+	/**
+	 * Obtener NuevoContenidoHeader
+	 */
 	public String getNuevoContenidoHeader() {
 		return nuevoContenidoHeader;
 	}

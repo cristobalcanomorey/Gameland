@@ -16,49 +16,57 @@ import control.LogSingleton;
 import modelo.JDBCSingleton;
 import vista.html.ResulBusquedaPage;
 
+/**
+ * Servlet para los resultados de la búsqueda
+ * @author tofol
+ *
+ */
 @WebServlet("/ResulBusqueda")
 public class ResulBusqueda extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
+	/**
+	 * Muestra los resultados de la búsqueda
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		LogSingleton log = LogSingleton.getInstance();
 		String seBusca = request.getParameter("busqueda");
-		String img = "Imagenes"+File.separator+"default.png";
+		String img = "Imagenes" + File.separator + "default.png";
 		String nombreUser = "";
-		if(seBusca != null) {
+		if (seBusca != null) {
 			try {
 				JDBCSingleton.getInstance();
-				Control.getConexion("java:/comp/env","jdbc/gameland");
+				Control.getConexion("java:/comp/env", "jdbc/gameland");
 				ResultSet rs = Control.buscaJuegos(seBusca);
 				String usuario = Control.getLoggedUser(request);
 				ResultSet usuarios = Control.getUsuariosDeBD();
-				
+
 				boolean esAdmin = false;
-				while(usuarios.next()) {
-					if(usuarios.getString("usuario").equals(usuario)){
-						if(usuarios.getString("administrador").equals("1")) {
+				while (usuarios.next()) {
+					if (usuarios.getString("usuario").equals(usuario)) {
+						if (usuarios.getString("administrador").equals("1")) {
 							esAdmin = true;
 						}
-						img = "Imagenes"+File.separator;
+						img = "Imagenes" + File.separator;
 						img += usuarios.getString("foto");
 						nombreUser = usuarios.getString("nombre");
 						break;
 					}
 				}
-				ResulBusquedaPage pag = Control.crearResulBusquedaPage(rs,nombreUser,esAdmin,img);
-				Control.printResponse(pag,response);
+				ResulBusquedaPage pag = Control.crearResulBusquedaPage(rs, nombreUser, esAdmin, img, seBusca);
+				Control.printResponse(pag, response);
 			} catch (SQLException | ClassNotFoundException | NamingException | NullPointerException | IOException e) {
-				log.getLoggerResulBusqueda().error("Se ha producido un error buscando juegos en get ResulBusqueda: ",e);
+				log.getLoggerResulBusqueda().error("Se ha producido un error buscando juegos en get ResulBusqueda: ",
+						e);
 			}
 		} else {
 			try {
 				response.sendRedirect("Main");
 			} catch (IOException e) {
-				log.getLoggerResulBusqueda().error("Se ha producido un error en get ResulBusqueda: ",e);
+				log.getLoggerResulBusqueda().error("Se ha producido un error en get ResulBusqueda: ", e);
 			}
 		}
-		
-	}
 
+	}
 
 }

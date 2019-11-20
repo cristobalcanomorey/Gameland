@@ -16,10 +16,18 @@ import control.LogSingleton;
 import modelo.JDBCSingleton;
 import vista.html.LoginPage;
 
+/**
+ * Servlet para hacer login
+ * @author tofol
+ *
+ */
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
+	/**
+	 * Muestra el formulario de login
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response){
 		LogSingleton log = LogSingleton.getInstance();
 		String errorDB = request.getParameter("errorDB");
@@ -44,6 +52,9 @@ public class Login extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Hace login
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response){
 		LogSingleton log = LogSingleton.getInstance();
 		String usuario = request.getParameter("usuario");

@@ -10,10 +10,18 @@ import javax.servlet.http.HttpSession;
 
 import control.LogSingleton;
 
+/**
+ * Servlet de logout
+ * @author tofol
+ *
+ */
 @WebServlet("/Logout")
 public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Hace logout
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response){
 		LogSingleton log = LogSingleton.getInstance();
 		// Eliminamos la sesión del usuario

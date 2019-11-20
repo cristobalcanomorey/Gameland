@@ -26,6 +26,7 @@ import modelo.PlataformaCRUD;
 import modelo.UsuarioCRUD;
 import modelo.ValoracionCRUD;
 import modelo.entidad.Usuario;
+import modelo.entidad.Valoracion;
 import vista.html.FichaPage;
 import vista.html.HtmlConstructor;
 import vista.html.LoginPage;
@@ -109,6 +110,18 @@ public class Control {
 			return true;
 		}
 	}
+	
+	public static boolean guardarValoracionEnBD(String valoracion, String idJuego, String idUsuario) {
+		Valoracion v = new Valoracion(valoracion,idJuego,idUsuario);
+		LogSingleton log = LogSingleton.getInstance();
+		try {
+			ValoracionCRUD.insert(v);
+			return false;
+		} catch (SQLException e) {
+			log.getLoggerControl().error("Se ha producido un error en guardarValoracionEnBD de Control: ",e);
+			return true;
+		}
+	}
 
 	public static MainPage crearPagMain(String registrado, boolean esAdmin, String foto) {
 		MainPage pag = new MainPage(registrado,esAdmin,foto);
@@ -155,7 +168,7 @@ public class Control {
 		return resul;
 	}
 
-	public static ResulBusquedaPage crearResulBusquedaPage(ResultSet rs,String nombre, boolean esAdmin,String foto) throws SQLException {
+	public static ResulBusquedaPage crearResulBusquedaPage(ResultSet rs,String nombre, boolean esAdmin,String foto,String seBusca) throws SQLException {
 		ResulBusquedaPage pag = null;
 		ArrayList<Float> valPromedio = new ArrayList<Float>();
 		while(rs.next()) {
@@ -164,7 +177,7 @@ public class Control {
 			valPromedio.add(promedio(vals));
 		}
 		rs.beforeFirst();
-		pag = new ResulBusquedaPage(rs,valPromedio,nombre,esAdmin,foto);
+		pag = new ResulBusquedaPage(rs,valPromedio,nombre,esAdmin,foto,seBusca);
 		return pag;
 	}
 
@@ -222,6 +235,12 @@ public class Control {
 	        }
 	    }
 	    return sortedMap;
+	}
+
+	public static ResultSet getValoracionesDeJuegoPorUsuario(String idJuego, String idUsuario) throws SQLException {
+		ResultSet rs = null;
+		rs = ValoracionCRUD.selectPorJuegoYUsuario(idJuego,idUsuario);
+		return rs;
 	}
 
 }

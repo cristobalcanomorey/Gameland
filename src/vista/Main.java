@@ -16,10 +16,18 @@ import control.LogSingleton;
 import modelo.JDBCSingleton;
 import vista.html.MainPage;
 
+/**
+ * Servlet Main
+ * @author tofol
+ *
+ */
 @WebServlet("/Main")
 public class Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	/**
+	 * Muestra la página principal
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response){
 		JDBCSingleton.getInstance();
 		LogSingleton log = LogSingleton.getInstance();

@@ -1,5 +1,10 @@
 package vista.html;
 
+/**
+ * Clase que crea la página LoginPage
+ * @author tofol
+ *
+ */
 public class LoginPage extends HtmlConstructor {
 
 	private String abreDiv = "";
@@ -7,6 +12,9 @@ public class LoginPage extends HtmlConstructor {
 	private String formulario = "";
 	private String cierraDiv = "";
 	
+	/**
+	 * Construye el resto de la página LoginPage sobre la página base
+	 */
 	public LoginPage() {
 		super();
 		this.abreDiv = "<div id='login'>";
@@ -23,6 +31,10 @@ public class LoginPage extends HtmlConstructor {
 		super.setContenidoBody(abreDiv+greet+formulario+cierraDiv);
 	}
 	
+	/**
+	 * Modifica el método setException para mostrar diferentes mensajes según el error
+	 * @param excepcion Tipo de error 
+	 */
 	@Override
 	public void setExcepcion(String excepcion) {
 		switch (excepcion) {

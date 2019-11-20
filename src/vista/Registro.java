@@ -20,21 +20,20 @@ import control.LogSingleton;
 import modelo.JDBCSingleton;
 import vista.html.RegistroPage;
 
+/**
+ * Servlet de Registro de usuarios
+ * @author tofol
+ *
+ */
 @WebServlet("/Registro")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class Registro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String UPLOAD_DIRECTORY = "Imagenes";
-//	Al context.xml del vostre tomcat heu d'afegir
-//	
-//	<Resource name="jdbc/gameland" auth="Container"
-//	type="javax.sql.DataSource" maxActive="100" maxIdle="30"
-//	maxWait="10000" username="tofol" password="1234"
-//	driverClassName="com.mysql.cj.jdbc.Driver"
-//	url="jdbc:mysql://localhost:3306/gameland?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;useSSL=false" />
-//
-//	<!-- Alerta que he substituït & per &amp; a la url -->
 
+	/**
+	 * Muestra la página de registro
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		LogSingleton log = LogSingleton.getInstance();
 		String errorDB = request.getParameter("errorDB");
@@ -59,6 +58,9 @@ public class Registro extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Introduce un nuevo usuario y redirige al servlet Main
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		LogSingleton log = LogSingleton.getInstance();
 		// Obtenemos una ruta en el servidor para guardar el archivo

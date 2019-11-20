@@ -1,5 +1,10 @@
 package vista.html;
 
+/**
+ * Crea la base sobre la que se construirán el resto de páginas
+ * @author tofol
+ *
+ */
 public class HtmlConstructor {
 	
 	private String head = "";
@@ -13,7 +18,7 @@ public class HtmlConstructor {
 	private String cierraBody = "";
 
 	/****
-	 * escribe lo que todas las páginas tienen en común
+	 * Escribe lo que todas las páginas tienen en común
 	 */
 	public HtmlConstructor() {
 		this.head = "<!DOCTYPE html>\r\n" + 
@@ -36,6 +41,9 @@ public class HtmlConstructor {
 		this.cierraBody = "</body></html>";
 	}
 
+	/**
+	 * Concatena todas las variables en orden y las devuelve
+	 */
 	public String toString() {
 		String resul = "";
 		resul += head;
@@ -50,18 +58,34 @@ public class HtmlConstructor {
 		return resul;
 	}
 	
+	/**
+	 * Añade un mensaje de error a la página
+	 * @param excepcion Mensaje de error
+	 */
 	public void setExcepcion(String excepcion) {
 		this.excepcion = excepcion;
 	}
 
+	/**
+	 * Añade un contenidoBody
+	 * @param contenidoBody Contenido del body (sin contar footer ni cabecera)
+	 */
 	public void setContenidoBody(String contenidoBody) {
 		this.contenidoBody = contenidoBody;
 	}
 
+	/**
+	 * Añade un contenido para la cabecera (no confundir con "<head>")
+	 * @param contenidoHeader Cabecera (incluye opciones de usuario y barra de navegación)
+	 */
 	public void setContenidoHeader(String contenidoHeader) {
 		this.contenidoHeader = contenidoHeader;
 	}
 
+	/**
+	 * Obtener contenido de la cabecera (no confundir con "<head>")
+	 * @return Cabecera (incluye opciones de usuario y barra de navegación)
+	 */
 	public String getContenidoHeader() {
 		return contenidoHeader;
 	}

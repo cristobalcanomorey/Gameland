@@ -1,5 +1,11 @@
 package vista.html;
 
+/**
+ * Clase que crea la página de registro de usuario
+ * 
+ * @author tofol
+ *
+ */
 public class RegistroPage extends HtmlConstructor {
 
 	private String abreDiv = "";
@@ -7,6 +13,9 @@ public class RegistroPage extends HtmlConstructor {
 	private String form = "";
 	private String cierraDiv = "";
 
+	/**
+	 * Construye el resto de la página Registro sobre la página base
+	 */
 	public RegistroPage() {
 		super();
 		this.abreDiv = "<div id='registro'>";
@@ -23,18 +32,22 @@ public class RegistroPage extends HtmlConstructor {
 		super.setContenidoBody(abreDiv + cabecera + form + cierraDiv);
 	}
 
+	/**
+	 * Modifica el método setException para mostrar diferentes mensajes según el error
+	 * @param excepcion Tipo de error 
+	 */
 	@Override
 	public void setExcepcion(String excepcion) {
 		switch (excepcion) {
-			case "errorDB":
-				super.setExcepcion("<p class='excepcion'>Ha ocurrido un error en la base de datos</p>");
-				break;
-			case "errorUsuario":
-				super.setExcepcion("<p class='excepcion'>No puedes dejar campos en blanco</p>");
-				break;
-			case "usuarioExiste":
-				super.setExcepcion("<p class='excepcion'>El nombre de usuario ya existe</p>");
-				break;
+		case "errorDB":
+			super.setExcepcion("<p class='excepcion'>Ha ocurrido un error en la base de datos</p>");
+			break;
+		case "errorUsuario":
+			super.setExcepcion("<p class='excepcion'>No puedes dejar campos en blanco</p>");
+			break;
+		case "usuarioExiste":
+			super.setExcepcion("<p class='excepcion'>El nombre de usuario ya existe</p>");
+			break;
 		}
 	}
 

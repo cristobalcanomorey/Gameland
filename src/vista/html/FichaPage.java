@@ -5,6 +5,11 @@ import java.sql.SQLException;
 
 import control.Control;
 
+/**
+ * Clase que crea la página Ficha
+ * @author tofol
+ *
+ */
 public class FichaPage  extends HtmlConstructor {
 
 	private String abreNavBar = "";
@@ -21,6 +26,15 @@ public class FichaPage  extends HtmlConstructor {
 	private String formValorar = "";
 	private String cierraFicha = "";
 	
+	/**
+	 * Construye el resto de la página Ficha sobre la página base
+	 * @param juego Juego de la ficha
+	 * @param valPromedio Valoración promedio del juego
+	 * @param nombre Nombre del usuario
+	 * @param esAdmin True si el usuario es administrador
+	 * @param foto Ruta a la foto de perfíl
+	 * @throws SQLException
+	 */
 	public FichaPage(ResultSet juego, float valPromedio, String nombre, boolean esAdmin, String foto) throws SQLException {
 		super();
 		juego.next();
@@ -40,12 +54,18 @@ public class FichaPage  extends HtmlConstructor {
 		this.plataforma = "<p><span style='font-weight:bold;'>Plataforma:<span> "+plat.getString("nombre")+"</p>";
 		this.valoracion = "<p><span style='font-weight:bold;'>Valoración:<span> "+valPromedio+"</p>";
 		this.descripcion = "<p><span style='font-weight:bold;'>Descripcion:<span> "+juego.getString("descripcion")+"</p>";
-		this.formValorar = "<form action='Ficha' method='post'>\r\n" + 
-				"                	<div>\r\n" + 
-				"				Valorar:<input type='number' name='valoracion'>\r\n" + 
-				"				<input type='submit' value='Valorar'>\r\n" + 
-				"			</div>\r\n" + 
-				"            	</form>";
+		if(nombre == null) {
+			nombre = "";
+		}
+		if(!nombre.equals("")) {
+			this.formValorar = "<form action='Ficha' method='post'>\r\n" + 
+					"                	<div>\r\n" + 
+					"				Valorar:<input type='number' name='valoracion'>\r\n" + 
+					"				<input type='submit' value='Valorar'>"
+					+ "<input type='hidden' name='idJuego' value='"+juego.getString("id")+"'>"
+					+ "</div>\r\n" + 
+					"            	</form>";
+		}
 		this.cierraFicha = "</div>";
 		super.setContenidoHeader(dis.getNuevoContenidoHeader());
 		super.setContenidoBody(abreNavBar+contenidoNavBar+cierraNavBar+abreFicha+imagenJuego+titulo+genero+anyo+plataforma+valoracion+descripcion+formValorar+cierraFicha);
