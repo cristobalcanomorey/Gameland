@@ -29,6 +29,7 @@ public class JDBCSingleton {
 
 	/**
 	 * Obtener la instancia del singleton
+	 * 
 	 * @return
 	 */
 	public static JDBCSingleton getInstance() {
@@ -37,6 +38,7 @@ public class JDBCSingleton {
 
 	/**
 	 * Obtener la conexión
+	 * 
 	 * @return
 	 */
 	public static Connection getConnection() {
@@ -45,8 +47,9 @@ public class JDBCSingleton {
 
 	/**
 	 * Establece la conexión con la base de datos
+	 * 
 	 * @param initC Contexto inicial
-	 * @param envC Base de datos
+	 * @param envC  Base de datos
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 * @throws NamingException
@@ -62,6 +65,7 @@ public class JDBCSingleton {
 
 	/**
 	 * Obtener el statement
+	 * 
 	 * @return Statement
 	 */
 	public static Statement getStatement() {
@@ -70,6 +74,7 @@ public class JDBCSingleton {
 
 	/**
 	 * Crea un statement
+	 * 
 	 * @throws SQLException
 	 */
 	public static void setStatement() throws SQLException {

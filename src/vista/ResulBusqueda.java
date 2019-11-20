@@ -18,6 +18,7 @@ import vista.html.ResulBusquedaPage;
 
 /**
  * Servlet para los resultados de la búsqueda
+ * 
  * @author tofol
  *
  */

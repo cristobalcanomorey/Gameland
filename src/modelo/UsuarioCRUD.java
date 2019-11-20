@@ -8,6 +8,7 @@ import modelo.entidad.Usuario;
 
 /**
  * Contiene los métodos CRUD utilizados para la tabla plataforma
+ * 
  * @author tofol
  *
  */
@@ -15,6 +16,7 @@ public class UsuarioCRUD {
 
 	/**
 	 * Obtiene todos los usuarios
+	 * 
 	 * @return Todos los usuarios
 	 * @throws SQLException
 	 */
@@ -28,6 +30,7 @@ public class UsuarioCRUD {
 
 	/**
 	 * Introduce un usuario en la base de datos
+	 * 
 	 * @param u
 	 * @throws SQLException
 	 */
@@ -35,8 +38,10 @@ public class UsuarioCRUD {
 		Statement stmt = null;
 		JDBCSingleton.setStatement();
 		stmt = JDBCSingleton.getStatement();
-		stmt.executeUpdate("INSERT INTO usuario (nombre, usuario, passwd, foto, administrador) VALUES ('"+u.getNombre()+"','"+u.getUsuario()+"','"+u.getPassword()+"','"+u.getfPerfil()+"','"+0+"')");
-		
+		stmt.executeUpdate(
+				"INSERT INTO usuario (nombre, usuario, passwd, foto, administrador) VALUES ('" + u.getNombre() + "','"
+						+ u.getUsuario() + "','" + u.getPassword() + "','" + u.getfPerfil() + "','" + 0 + "')");
+
 	}
 
 }

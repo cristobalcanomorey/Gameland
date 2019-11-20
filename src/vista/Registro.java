@@ -22,6 +22,7 @@ import vista.html.RegistroPage;
 
 /**
  * Servlet de Registro de usuarios
+ * 
  * @author tofol
  *
  */
@@ -91,7 +92,7 @@ public class Registro extends HttpServlet {
 					}
 					// Lo utilizaremos para guardar el nombre del archivo
 					String fileName = null;
-					
+
 					// Obtenemos el archivo y lo guardamos a disco
 					for (Part part : request.getParts()) {
 						fileName = Control.getFileNameDeUsuario(part, usuario);

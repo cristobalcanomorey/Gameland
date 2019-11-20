@@ -16,6 +16,7 @@ public class ValoracionCRUD {
 
 	/**
 	 * Obtiene las valoraciones de un juego
+	 * 
 	 * @param idJuego Id del Juego
 	 * @return Valoraciones
 	 * @throws SQLException
@@ -30,7 +31,8 @@ public class ValoracionCRUD {
 
 	/**
 	 * Obtiene la valoracion que le puso un usuario a un juego
-	 * @param idJuego Id del juego
+	 * 
+	 * @param idJuego   Id del juego
 	 * @param idUsuario Id del usuario
 	 * @return Valoracion
 	 * @throws SQLException
@@ -46,6 +48,7 @@ public class ValoracionCRUD {
 
 	/**
 	 * Introduce una valoracion en la base de datos
+	 * 
 	 * @param v Valoracion
 	 * @throws SQLException
 	 */

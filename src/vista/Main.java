@@ -18,35 +18,36 @@ import vista.html.MainPage;
 
 /**
  * Servlet Main
+ * 
  * @author tofol
  *
  */
 @WebServlet("/Main")
 public class Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+
 	/**
 	 * Muestra la página principal
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response){
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		JDBCSingleton.getInstance();
 		LogSingleton log = LogSingleton.getInstance();
 		String nombre = null;
-		String img = "Imagenes"+File.separator+"default.png";
+		String img = "Imagenes" + File.separator + "default.png";
 		boolean esAdmin = false;
 		MainPage pagina = null;
 		String usuario = Control.getLoggedUser(request);
-		if(usuario != null) {
+		if (usuario != null) {
 			try {
-				Control.getConexion("java:/comp/env","jdbc/gameland");
+				Control.getConexion("java:/comp/env", "jdbc/gameland");
 				ResultSet usuarios = Control.getUsuariosDeBD();
-				while(usuarios.next()) {
-					if(usuarios.getString("usuario").equals(usuario)){
+				while (usuarios.next()) {
+					if (usuarios.getString("usuario").equals(usuario)) {
 						nombre = usuarios.getString("nombre");
-						img = "Imagenes"+File.separator;
+						img = "Imagenes" + File.separator;
 						img += usuarios.getString("foto");
-						if(usuarios.getString("administrador").equals("1")) {
-							esAdmin = true;	
+						if (usuarios.getString("administrador").equals("1")) {
+							esAdmin = true;
 						}
 						break;
 					}
@@ -56,7 +57,7 @@ public class Main extends HttpServlet {
 			}
 			pagina = Control.crearPagMain(nombre, esAdmin, img);
 		} else {
-			pagina = Control.crearPagMain(null,false,img);
+			pagina = Control.crearPagMain(null, false, img);
 		}
 		try {
 			Control.printResponse(pagina, response);

@@ -33,8 +33,10 @@ public class RegistroPage extends HtmlConstructor {
 	}
 
 	/**
-	 * Modifica el método setException para mostrar diferentes mensajes según el error
-	 * @param excepcion Tipo de error 
+	 * Modifica el método setException para mostrar diferentes mensajes según el
+	 * error
+	 * 
+	 * @param excepcion Tipo de error
 	 */
 	@Override
 	public void setExcepcion(String excepcion) {

@@ -12,6 +12,7 @@ import control.LogSingleton;
 
 /**
  * Servlet de logout
+ * 
  * @author tofol
  *
  */
@@ -22,7 +23,7 @@ public class Logout extends HttpServlet {
 	/**
 	 * Hace logout
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response){
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		LogSingleton log = LogSingleton.getInstance();
 		// Eliminamos la sesión del usuario
 		HttpSession session = request.getSession(false);
@@ -35,7 +36,7 @@ public class Logout extends HttpServlet {
 		try {
 			response.sendRedirect("Main");
 		} catch (IOException e) {
-			log.getLoggerLogout().error("Se ha producido un error en get Logout: ",e);
+			log.getLoggerLogout().error("Se ha producido un error en get Logout: ", e);
 		}
 	}
 
