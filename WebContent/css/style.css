@@ -1,5 +1,87 @@
 #usuario img{
 	border-radius:50%;
-	max-width: 150px;
+	max-width: 100px;
 	height: auto;
+	margin-left:10px;
 }
+
+#header > #usuario{
+	float:right;
+}
+
+#header{
+	overflow:hidden;
+}
+
+#header a{
+	float: left;
+	
+}
+
+#opcionesUsuario a{
+	margin-left:5px;
+	margin-right:5px;
+}
+
+#header a img{
+	margin-top: 25px;
+}
+
+a{
+	text-decoration:none;
+	color:black;
+}
+
+a:hover{
+	text-shadow: 0 0 3px #FF0000;
+}
+
+#navBar ul{
+	list-style-type: none;
+	margin: 0;
+	padding-left:10px;
+}
+
+#navBar ul li{
+	display: inline-block;
+	position: relative;
+	margin-right:5px;
+}
+
+#buscador{
+	width:50%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#buscador img{
+	display:block;
+    margin:auto;
+}
+
+#buscador h1{
+	width:100%;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#buscador form{
+	width:100%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#footer {
+	width:100%;
+    position:absolute;
+    bottom:0;
+    text-align:center;
+}
+
+#usuario div:first-child{
+	margin-top:20px;
+	margin-left:24px;
+}
+
+

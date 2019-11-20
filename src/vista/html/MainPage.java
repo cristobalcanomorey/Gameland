@@ -27,7 +27,7 @@ public class MainPage extends HtmlConstructor {
 		this.contenidoNavBar = dis.getContenidoNavBar();
 		this.cierraNavBar = dis.getCierraNavBar();
 
-		this.buscador = "<div id='buscador'>\r\n" + "                <img src='imgs/logo.png' alt='Gameland'>\r\n"
+		this.buscador = "<div id='buscador'>\r\n" + "                <img src='Imagenes/logo.png' alt='Gameland'>\r\n"
 				+ "		<h1>Gameland</h1>\r\n" + "		<form action='ResulBusqueda' method='get'>\r\n"
 				+ "			<input type='text' name='busqueda'>\r\n"
 				+ "			<button type='submit'>Buscar</button>\r\n" + "		</form>\r\n" + "	</div>";

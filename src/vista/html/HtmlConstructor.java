@@ -32,7 +32,7 @@ public class HtmlConstructor {
 		this.abreBody = "<body>";
 		this.abreHeader = "<div id='header'>";
 		this.contenidoHeader = "<a href='Main'>" + 
-				"                <img src='imgs/logo.png' alt='Gameland'>\r\n" + 
+				"                <img src='Imagenes/logo.png' alt='Gameland'>\r\n" + 
 				"            </a>";
 		this.cierraHeader = "</div>";
 		this.footer = "<div id='footer'>\r\n" + 
