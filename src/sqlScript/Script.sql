@@ -1,3 +1,4 @@
+-- drop database gameland;
 -- Crea la base de datos
 CREATE DATABASE gameland;
 use gameland;
@@ -63,7 +64,7 @@ CREATE TABLE IF NOT EXISTS valoracion (
 -- Datos de ejemplo
 -- Usuarios:
 INSERT INTO usuario (nombre,usuario,passwd,foto,administrador)
-values ('Tomas', 'patata23','password','patata23.png',false);
+values ('Tomas', 'patata23','password','patata23.jpg',false);
 
 INSERT INTO usuario (nombre,usuario,passwd,foto,administrador)
 values ('Tofol', 'mstrOfPuppies','1234','mstrOfPuppies.jpg',true);
@@ -96,31 +97,31 @@ values ('Gamer PC');
 
 -- Juegos
 INSERT INTO juego (titulo,anyo,foto,descripcion,idGenero,idPlataforma)
-values ('Death Stranding',2019,'Juegos/Death_Stranding.png','Un señor de correos y su bebé en lata intentan llevar paquetes esquivando muertos y malos con poderes',1,2);
+values ('Death Stranding',2019,'1Death_Stranding.png','Un señor de correos y su bebé en lata intentan llevar paquetes esquivando muertos y malos con poderes',1,2);
 
 INSERT INTO juego (titulo,anyo,foto,descripcion,idGenero,idPlataforma)
-values ('Super Mario Maker 2',2019,'Juegos/SMM2.png','Un señor fontanero y su hermano intentan agarrarse a banderas esquivando tortugas y mal diseño de niveles',3,3);
+values ('Super Mario Maker 2',2019,'2Super_Mario_Maker_2.png','Un señor fontanero y su hermano intentan agarrarse a banderas esquivando tortugas y mal diseño de niveles',3,3);
 
 INSERT INTO juego (titulo,anyo,foto,descripcion,idGenero,idPlataforma)
-values ('Super relleno',2018,'Juegos/relleno.png','Un señor relleno y su relleno intentan relleno a relleno esquivando relleno y mal relleno de relleno',1,4);
+values ('Super relleno',2018,'3Super_relleno.png','Un señor relleno y su relleno intentan relleno a relleno esquivando relleno y mal relleno de relleno',1,4);
 
 INSERT INTO juego (titulo,anyo,foto,descripcion,idGenero,idPlataforma)
-values ('Super relleno2',2018,'Juegos/relleno2.png','Un señor relleno y su relleno intentan relleno a relleno esquivando relleno y mal relleno de relleno',2,4);
+values ('Super relleno2',2018,'4Super_relleno2.png','Un señor relleno y su relleno intentan relleno a relleno esquivando relleno y mal relleno de relleno',2,4);
 
 INSERT INTO juego (titulo,anyo,foto,descripcion,idGenero,idPlataforma)
-values ('Super relleno3',2018,'Juegos/relleno3.png','Un señor relleno y su relleno intentan relleno a relleno esquivando relleno y mal relleno de relleno',2,4);
+values ('Super relleno3',2018,'5Super_relleno3.png','Un señor relleno y su relleno intentan relleno a relleno esquivando relleno y mal relleno de relleno',2,4);
 
 INSERT INTO juego (titulo,anyo,foto,descripcion,idGenero,idPlataforma)
-values ('Super relleno4',2018,'Juegos/relleno4.png','Un señor relleno y su relleno intentan relleno a relleno esquivando relleno y mal relleno de relleno',2,4);
+values ('Super relleno4',2018,'6Super_relleno4.png','Un señor relleno y su relleno intentan relleno a relleno esquivando relleno y mal relleno de relleno',2,4);
 
 INSERT INTO juego (titulo,anyo,foto,descripcion,idGenero,idPlataforma)
-values ('Super relleno remake',2018,'Juegos/rellenoRemake.png','Un señor relleno y su relleno intentan relleno a relleno esquivando relleno y mal relleno de relleno',3,4);
+values ('Super relleno remake',2018,'7Super_rellenoRemake.png','Un señor relleno y su relleno intentan relleno a relleno esquivando relleno y mal relleno de relleno',3,4);
 
 INSERT INTO juego (titulo,anyo,foto,descripcion,idGenero,idPlataforma)
-values ('Super relleno5',2018,'Juegos/relleno5.png','Un señor relleno y su relleno intentan relleno a relleno esquivando relleno y mal relleno de relleno',3,2);
+values ('Super relleno5',2018,'8Super_relleno5.png','Un señor relleno y su relleno intentan relleno a relleno esquivando relleno y mal relleno de relleno',3,2);
 
 INSERT INTO juego (titulo,anyo,foto,descripcion,idGenero,idPlataforma)
-values ('Super relleno6',2018,'Juegos/relleno6.png','Un señor relleno y su relleno intentan relleno a relleno esquivando relleno y mal relleno de relleno',3,3);
+values ('Super relleno6',2018,'9Super_relleno6.png','Un señor relleno y su relleno intentan relleno a relleno esquivando relleno y mal relleno de relleno',3,3);
 
 
 -- Valoraciones
@@ -150,3 +151,4 @@ values ('3','2',10);
 
 INSERT INTO valoracion (idJuego,idUsuario,valoracion)
 values ('3','3',1);
+
