@@ -44,7 +44,7 @@ public class Main extends HttpServlet {
 					}
 				}
 			} catch (ClassNotFoundException | SQLException | NamingException e) {
-				log.getLoggerRegistro().error("Se ha producido un error en get Main: ", e);
+				log.getLoggerMain().error("Se ha producido un error en get Main: ", e);
 			}
 			pagina = Control.crearPagMain(nombre, esAdmin, img);
 		} else {
@@ -53,7 +53,7 @@ public class Main extends HttpServlet {
 		try {
 			Control.printResponse(pagina, response);
 		} catch (IOException e) {
-			log.getLoggerRegistro().error("Se ha producido un error en get Main: ", e);
+			log.getLoggerMain().error("Se ha producido un error en get Main: ", e);
 		}
 	}
 

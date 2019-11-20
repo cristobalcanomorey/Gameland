@@ -7,6 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import modelo.GeneroCRUD;
 import modelo.JDBCSingleton;
 import modelo.JuegoCRUD;
+import modelo.PlataformaCRUD;
 import modelo.UsuarioCRUD;
 import modelo.ValoracionCRUD;
 import modelo.entidad.Usuario;
@@ -175,6 +182,46 @@ public class Control {
 		juego.beforeFirst();
 		pag = new FichaPage(juego,valPromedio,nombreUser,esAdmin,foto);
 		return pag;
+	}
+
+	public static ResultSet getGeneroPorID(String idGenero) throws SQLException {
+		ResultSet rs = null;
+		rs = GeneroCRUD.selectPorID(idGenero);
+		return rs;
+	}
+
+	public static ResultSet getPlataformaPorID(String idPlataforma) throws SQLException {
+		ResultSet rs = null;
+		rs = PlataformaCRUD.selectPorID(idPlataforma);
+		return rs;
+	}
+	
+	public LinkedHashMap<Integer, String> sortHashMapByValues(HashMap<Integer, String> passedMap) {
+	    List<Integer> mapKeys = new ArrayList<>(passedMap.keySet());
+	    List<String> mapValues = new ArrayList<>(passedMap.values());
+	    Collections.sort(mapValues);
+	    Collections.sort(mapKeys);
+
+	    LinkedHashMap<Integer, String> sortedMap = new LinkedHashMap<>();
+
+	    Iterator<String> valueIt = mapValues.iterator();
+	    while (valueIt.hasNext()) {
+	        String val = valueIt.next();
+	        Iterator<Integer> keyIt = mapKeys.iterator();
+
+	        while (keyIt.hasNext()) {
+	            Integer key = keyIt.next();
+	            String comp1 = passedMap.get(key);
+	            String comp2 = val;
+
+	            if (comp1.equals(comp2)) {
+	                keyIt.remove();
+	                sortedMap.put(key, val);
+	                break;
+	            }
+	        }
+	    }
+	    return sortedMap;
 	}
 
 }

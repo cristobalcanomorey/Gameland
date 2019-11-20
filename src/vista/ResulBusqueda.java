@@ -37,10 +37,10 @@ public class ResulBusqueda extends HttpServlet {
 				while(usuarios.next()) {
 					if(usuarios.getString("usuario").equals(usuario)){
 						if(usuarios.getString("administrador").equals("1")) {
-							img = "Imagenes"+File.separator;
-							img += usuarios.getString("foto");
 							esAdmin = true;
 						}
+						img = "Imagenes"+File.separator;
+						img += usuarios.getString("foto");
 						nombreUser = usuarios.getString("nombre");
 						break;
 					}

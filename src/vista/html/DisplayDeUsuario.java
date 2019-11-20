@@ -25,7 +25,10 @@ public class DisplayDeUsuario {
 		
 		if(nombre == null) {
 			nombre = "";
-		} else {
+		}
+		if(nombre.equals("")) {
+			
+		}else {
 			opcionesUsuario = "<div id='opcionesUsuario'>"
 					+ "<a href='Logout'>Cerrar sesión</a>"
 					+ "</div>";
