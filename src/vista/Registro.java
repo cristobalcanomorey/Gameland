@@ -35,20 +35,20 @@ public class Registro extends HttpServlet {
 //	url="jdbc:mysql://localhost:3306/gameland?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;useSSL=false" />
 //
 //	<!-- Alerta que he substituït & per &amp; a la url -->
-   
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		LogSingleton log = LogSingleton.getInstance();
 		String errorDB = request.getParameter("errorDB");
 		String errorUsuario = request.getParameter("errorUsuario");
 		String usuarioExiste = request.getParameter("usuarioRepetido");
-		
+
 		RegistroPage pagina = null;
-		
-		if(errorDB != null) {
+
+		if (errorDB != null) {
 			pagina = Control.crearPagRegistro("errorDB");
-		} else if(errorUsuario != null) {
+		} else if (errorUsuario != null) {
 			pagina = Control.crearPagRegistro("errorUsuario");
-		} else if(usuarioExiste != null) {
+		} else if (usuarioExiste != null) {
 			pagina = Control.crearPagRegistro("usuarioExiste");
 		} else {
 			pagina = Control.crearPagRegistro(null);
@@ -60,7 +60,7 @@ public class Registro extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response){
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		LogSingleton log = LogSingleton.getInstance();
 		// Obtenemos una ruta en el servidor para guardar el archivo
 		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
@@ -68,49 +68,46 @@ public class Registro extends HttpServlet {
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
 		String fPerfil = "";
-		
+
 		JDBCSingleton.getInstance();
 		boolean encontrado = false;
 		try {
-			Control.getConexion("java:/comp/env","jdbc/gameland");
+			Control.getConexion("java:/comp/env", "jdbc/gameland");
 			ResultSet usuarios = Control.getUsuariosDeBD();
-			if((!nombre.equals("")) && (!usuario.equals("")) && (!password.equals(""))) {
-				while(usuarios.next()) {
-					if(usuarios.getString("usuario").equals(usuario)) {
+			if ((!nombre.equals("")) && (!usuario.equals("")) && (!password.equals(""))) {
+				while (usuarios.next()) {
+					if (usuarios.getString("usuario").equals(usuario)) {
 						encontrado = true;
 						break;
 					}
 				}
-				if(!encontrado) {
+				if (!encontrado) {
 					String fileName = null;
-					Enumeration paramaterNames = request.getParameterNames();
-					while(paramaterNames.hasMoreElements() ) {
-					       System.out.println(paramaterNames.nextElement());
-					} 
-					if(request.getParameter("avatar") != null) {
-						// Si la ruta no existe la crearemos
-						File uploadDir = new File(uploadPath);
-						if (!uploadDir.exists()) {
-							uploadDir.mkdir();
-						}
-						// Lo utilizaremos para guardar el nombre del archivo
-						
-						
-						// Obtenemos el archivo y lo guardamos a disco
-						for (Part part : request.getParts()) {
-							fileName = Control.getFileNameDeUsuario(part,usuario);
-							part.write(uploadPath + File.separator + fileName);
-						}
-					} else {
-						fileName = "default.png";
+//					Enumeration paramaterNames = request.getParameterNames();
+//					while(paramaterNames.hasMoreElements() ) {
+//					       System.out.println(paramaterNames.nextElement());
+//					} 
+					// formulario no da el parametro
+
+					// Si la ruta no existe la crearemos
+					File uploadDir = new File(uploadPath);
+					if (!uploadDir.exists()) {
+						uploadDir.mkdir();
 					}
-					
+					// Lo utilizaremos para guardar el nombre del archivo
+
+					// Obtenemos el archivo y lo guardamos a disco
+					for (Part part : request.getParts()) {
+						fileName = Control.getFileNameDeUsuario(part, usuario);
+						part.write(uploadPath + File.separator + fileName);
+					}
+
 					// Si es una imagen guardamos la ruta en fPerfil
 					if (fileName.matches(".+\\.(jpg|png|jpeg)")) {
 						fPerfil = fileName;
 					}
-					boolean errorDB = Control.guardarUsuarioEnBD(nombre,usuario,password,fPerfil);
-					if(!errorDB) {
+					boolean errorDB = Control.guardarUsuarioEnBD(nombre, usuario, password, fPerfil);
+					if (!errorDB) {
 						HttpSession session = request.getSession(true);
 						session.setAttribute("usuario", usuario);
 						response.sendRedirect("Main");
@@ -123,10 +120,10 @@ public class Registro extends HttpServlet {
 			} else {
 				response.sendRedirect("Registro?errorUsuario=si");
 			}
-			
+
 		} catch (ClassNotFoundException | SQLException | NamingException e) {
 			log.getLoggerRegistro().error("Se ha producido un error en post Registro: ", e);
-		} catch (IllegalStateException |IOException |ServletException e) {
+		} catch (IllegalStateException | IOException | ServletException e) {
 			log.getLoggerRegistro().error("Se ha producido un error de imagen de perfil en post Registro: ", e);
 		}
 	}
