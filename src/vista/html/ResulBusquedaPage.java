@@ -46,12 +46,15 @@ public class ResulBusquedaPage extends HtmlConstructor {
 		this.cierraNavBar = dis.getCierraNavBar();
 
 		this.abreResul = "<div id='resBusqeda'>";
-		this.greet = "<h1>Resultados de búsqueda de \"" + seBusca + "\"</h1>";
+		if (seBusca.equals("")) {
+			this.greet = "<h1>Todos los juegos</h1>";
+		} else {
+			this.greet = "<h1>Resultados de búsqueda de \"" + seBusca + "\"</h1>";
+		}
+
 		this.abreTabla = "<table>";
-		this.tHead = "<thead>\r\n" + "                    <tr>\r\n" + "                        <th>Nombre</th>\r\n"
-				+ "                        <th>Valoración</th>\r\n" + "                        <th>Género</th>\r\n"
-				+ "                        <th>Año</th>\r\n" + "                        <th>Plataforma</th>\r\n"
-				+ "                    </tr>\r\n" + "                </thead>";
+		this.tHead = "<thead>\r\n" + "<tr>\r\n" + "<th>Nombre</th>\r\n" + "<th>Valoración</th>\r\n"
+				+ "<th>Género</th>\r\n" + "<th>Año</th>\r\n" + "<th>Plataforma</th>\r\n" + "</tr>\r\n" + "</thead>";
 		this.abreTbody = "<tbody>";
 		while (rs.next()) {
 			int posicion = rs.getRow();

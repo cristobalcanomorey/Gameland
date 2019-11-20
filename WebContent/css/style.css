@@ -40,6 +40,7 @@ a:hover{
 	list-style-type: none;
 	margin: 0;
 	padding-left:10px;
+	margin-bottom:25px;
 }
 
 #navBar ul li{
@@ -70,6 +71,10 @@ a:hover{
 	width:100%;
 	margin-left:auto;
 	margin-right:auto;
+}
+
+#buscador form input{
+	margin-left:20%;
 }
 
 #footer {
@@ -108,6 +113,7 @@ a:hover{
 	width:70%;
 	margin-left:auto;
 	margin-right:auto;
+	border:1px solid black;
 }
 
 #ficha img{

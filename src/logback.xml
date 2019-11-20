@@ -55,11 +55,15 @@
     <appender-ref ref="ERRORFILE" />
   </logger>
   
+  <logger name="vista.ResulBusqueda" level="DEBUG" additivity="false">
+    <appender-ref ref="FILE" />
+  </logger>
+  
   <logger name="vista.Login" level="INFO" additivity="false">
   	<appender-ref ref="ADMINFILE"/>
   </logger>
  
-  <root level="debug">
+  <root level="DEBUG">
     <appender-ref ref="FILE" />
     <appender-ref ref="STDOUT" />
   </root>

@@ -46,10 +46,13 @@ public class Control {
 	 * @return Nombre del fichero modificado
 	 */
 	public static String getFileNameDeUsuario(Part part, String usuario) {
-		String resul = "default.jpeg";
+		String resul = "";
 		for (String content : part.getHeader("content-disposition").split(";")) {
 			if (content.trim().startsWith("filename"))
 				resul = content.substring(content.indexOf("=") + 2, content.length() - 1);
+		}
+		if(resul.indexOf(".") == -1) {
+			return "default.png";
 		}
 		String nombreOriginal = resul.substring(0, resul.indexOf("."));
 		resul = resul.replace(nombreOriginal, usuario);
