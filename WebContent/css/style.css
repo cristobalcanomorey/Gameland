@@ -84,4 +84,33 @@ a:hover{
 	margin-left:24px;
 }
 
+#resBusqeda{
+	width:70%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#resBusqeda table{
+	text-align:center;
+	border-collapse: collapse;
+}
+
+#resBusqeda table,th,td{
+	border: 1px solid black;
+	padding:5px;
+}
+
+#resBusqeda table thead{
+	background-color: #e0e0e0;
+}
+
+#ficha{
+	width:70%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#ficha img{
+	max-height:423px;
+}
 
