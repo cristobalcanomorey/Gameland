@@ -35,7 +35,7 @@ public class Control {
 				resul= content.substring(content.indexOf("=") + 2, content.length() - 1);
 		}
 		String nombreOriginal = resul.substring(0,resul.indexOf("."));
-		resul.replace(nombreOriginal, usuario);
+		resul = resul.replace(nombreOriginal, usuario);
 		return resul;
 	}
 		
