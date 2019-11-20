@@ -6,8 +6,18 @@ import java.sql.Statement;
 
 import modelo.entidad.Usuario;
 
+/**
+ * Contiene los métodos CRUD utilizados para la tabla plataforma
+ * @author tofol
+ *
+ */
 public class UsuarioCRUD {
 
+	/**
+	 * Obtiene todos los usuarios
+	 * @return Todos los usuarios
+	 * @throws SQLException
+	 */
 	public static ResultSet selectTodos() throws SQLException {
 		Statement stmt = null;
 		JDBCSingleton.setStatement();
@@ -16,6 +26,11 @@ public class UsuarioCRUD {
 		return rs;
 	}
 
+	/**
+	 * Introduce un usuario en la base de datos
+	 * @param u
+	 * @throws SQLException
+	 */
 	public static void insert(Usuario u) throws SQLException {
 		Statement stmt = null;
 		JDBCSingleton.setStatement();

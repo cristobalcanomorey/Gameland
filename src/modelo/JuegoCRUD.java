@@ -4,8 +4,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Contiene los métodos CRUD utilizados para la tabla juego
+ * @author tofol
+ *
+ */
 public class JuegoCRUD {
 
+	/**
+	 * Obtiene generos, plataformas y juegos donde el título del juego contenga el parametro de búsqueda
+	 * @param seBusca Parametro de búsqueda
+	 * @return Resultado de la query
+	 * @throws SQLException
+	 */
 	public static ResultSet selectLikeTitulo(String seBusca) throws SQLException {
 		Statement stmt = null;
 		JDBCSingleton.setStatement();
@@ -19,6 +30,12 @@ public class JuegoCRUD {
 		return rs;
 	}
 	
+	/**
+	 * Obtiene el juego por su id
+	 * @param idJuego Id del juego
+	 * @return Juego
+	 * @throws SQLException
+	 */
 	public static ResultSet selectPorID(String idJuego) throws SQLException {
 		Statement stmt = null;
 		JDBCSingleton.setStatement();
